@@ -1,7 +1,7 @@
 #/bin/sh
 
 echo "---------- LEX Content ----------"
-cat example.l
+cat example.flex
 echo ""
 
 echo "---------- TEST Content ----------"

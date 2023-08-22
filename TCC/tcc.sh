@@ -96,7 +96,7 @@ fi
 
 if [ $lt_action_run == 1 ]; then
 
-    out_file=$workspace/$lt_type.out
+    out_file=$workspace/tcc.out
 
     if [ -f $out_file ]
     then

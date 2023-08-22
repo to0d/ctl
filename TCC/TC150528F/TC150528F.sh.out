@@ -26,7 +26,7 @@ zone "." {
 };
 
 ---------- Parse ----------
-././TC150528F.sh: line 12:  9557 Done                    cat test.src
-      9558 Segmentation fault      (core dumped) | ./x.main.ctl.x
+././TC150528F.sh: line 12:  2324 Done                    cat test.src
+      2325 Segmentation fault      (core dumped) | ./x.main.ctl.x
 
 output: done!
