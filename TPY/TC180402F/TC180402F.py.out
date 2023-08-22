@@ -1,0 +1,6 @@
+(0, 3)
+(11, 14)
+Traceback (most recent call last):
+  File "././TC180402F.py", line 10, in <module>
+    matchObj = re.search( r'(.*) are (.*?) .*', line, re.RegexFlag.M|re.RegexFlag.I)
+AttributeError: 'module' object has no attribute 'RegexFlag'

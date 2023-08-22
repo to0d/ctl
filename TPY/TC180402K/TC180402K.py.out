@@ -1,0 +1,16 @@
+开始线程Thread-1
+开始线程Thread-2
+Thread-1: Tue Aug 22 10:43:38 2023
+Thread-2: Tue Aug 22 10:43:39 2023
+Thread-1: Tue Aug 22 10:43:39 2023
+Thread-1: Tue Aug 22 10:43:40 2023
+Thread-2: Tue Aug 22 10:43:41 2023
+Thread-1: Tue Aug 22 10:43:41 2023
+Thread-1: Tue Aug 22 10:43:42 2023
+退出线程Thread-1
+Thread-2: Tue Aug 22 10:43:43 2023
+Thread-2: Tue Aug 22 10:43:45 2023
+Thread-2: Tue Aug 22 10:43:47 2023
+退出线程Thread-2
+退出主线程
+output: done.

@@ -1,0 +1,11 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*- 
+ 
+import re
+
+it = re.finditer(r"\d+", "12a32bc43jf3") 
+for match in it: 
+    print (match.group())
+
+
+print('output: done.');

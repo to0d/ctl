@@ -1,0 +1,7 @@
+('Employee.__doc__   :', None)
+('Employee.__name__  :', 'Employee')
+('Employee.__module__:', '__main__')
+('Employee.__bases__ :', ())
+('Employee.__dict__  :', {'__module__': '__main__', 'displayCount': <function displayCount at 0x7fc9c4b51250>, 'empCount': 0, 'displayEmployee': <function displayEmployee at 0x7fc9c4b512d0>, '__doc__': None, '__init__': <function __init__ at 0x7fc9c4b511d0>})
+('Total Employee: ', 1)
+output: done.

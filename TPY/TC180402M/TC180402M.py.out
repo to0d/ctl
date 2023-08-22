@@ -1,0 +1,13 @@
+开启线程Thread-1
+开启线程Thread-2
+开启线程Thread-3
+Thread-1 processing One
+Thread-2 processing Two
+Thread-3 processing Three
+Thread-2 processing Four
+Thread-1 processing Five
+退出线程Thread-3
+退出线程Thread-1
+退出线程Thread-2
+退出主线程
+output: done.

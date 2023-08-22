@@ -1,0 +1,4 @@
+matchObj.group()  : Cats are smarter than dogs
+matchObj.group(1) : Cats
+matchObj.group(2) : smarter
+output: done.

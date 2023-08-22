@@ -1,0 +1,13 @@
++++
+date = "2015-05-10"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test python - list, tuple"
+tags = [
+    "PY-List",
+    "PY-Tuple"
+]
+!template = md2.template
+!domain = ""
++++
