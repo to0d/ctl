@@ -94,7 +94,7 @@ fi
 
 if [ $lt_action_run == 1 ]; then
 
-    out_file=cppt.out
+    out_file=tcx.out
 
     cd $workspace
 

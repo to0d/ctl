@@ -2,8 +2,8 @@ Service: Thread[1] starting£º
 Client[2]: starting£º
 Server: get connection from 127.0.0.1
 Client[2]: received£ºHello, TCP
-main: Waiting all thread end:
 Client[3]: starting£º
+main: Waiting all thread end:
 Server: get connection from 127.0.0.1
 Client[3]: received£ºHello, TCP
 main: Thread[0] end, message=Service Thread 1 return.
