@@ -6,7 +6,6 @@ date = "2018-04-02"
 mark = "Thread Example"
 tags = [
     "PY-BASIC-TUTORIAL",
-    "py101",
     "Python-Thread"
 ]
 !template = md2.template

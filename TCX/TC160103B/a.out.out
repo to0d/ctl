@@ -1,0 +1,8 @@
+
+==>  test_xxx_1: 
+
+AABB
+sizeof(A)=16
+sizeof(B)=24
+sizeof(C)=32
+output: done!

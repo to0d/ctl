@@ -1,0 +1,16 @@
++++
+date = "2016-01-06"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "chapter 12 位运算与嵌入式编程"
+tags = [
+    "程序员面试宝典"
+]
+!template = md2.template
+!domain = ""
+!id = ""
+!link = ""
+!index_word_group=false
++++

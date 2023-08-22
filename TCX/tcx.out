@@ -18,10 +18,13 @@
 ./TC151223A: output: done!
 ./TC151229A: output: s1=string1, s2[0]=s1 s2, *ps3=s41 s42
 ./TC160103A: output: CSingleton1=101, CSingleton2=102
+./TC160103B: output: done!
 ./TC160105A: output: done!
 ./TC160105B: output: done!
 ./TC160105C: output: done!
+./TC160106A: output: cdab output: done!
 ./TC160118A: output: done!
+./TC160118B: output: done!
 ./TC161030A: output: 1,2,3,
 ./TC161030B: 
 ./TC161030C: output: Little Endian.

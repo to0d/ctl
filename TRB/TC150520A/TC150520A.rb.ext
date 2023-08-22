@@ -1,0 +1,16 @@
++++
+date = "2015-05-20"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "hello ruby"
+!tags = [
+!    "working"
+!]
+!template = md2.template
+!domain = ""
+!id = ""
+!link = ""
+!index_word_group=false
++++

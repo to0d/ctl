@@ -1,0 +1,22 @@
++++
+date = "2016-05-18"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "fcntl fileflags"
+tags = [
+    "APUE"
+]
+!template = md2.template
+domain = "Linux"
+!id = ""
+!link = ""
+!index_word_group=false
++++
+
+### issue: undefined reference to `err_quit'
+
+- Update "apue.h"
+
+- see [](%"2017-09-12 Linux下运行 UNIX环境高级编程 undefined reference to err_quit 编译出错的处理方法 李学文 博客园.html")
