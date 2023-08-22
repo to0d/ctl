@@ -95,7 +95,7 @@ fi
 
 if [ $lt_action_run == 1 ]; then
 
-    out_file=al.out
+    out_file=tca.out
 
     cd $workspace
 
