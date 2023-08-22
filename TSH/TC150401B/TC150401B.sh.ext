@@ -1,0 +1,13 @@
++++
+date = "2015-04-01"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Save list/result to variable"
+tags = [
+    "Loop",
+    "L-for"
+]
+!template = md2.template
+!domain = ""
++++

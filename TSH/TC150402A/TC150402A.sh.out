@@ -1,0 +1,10 @@
+test_fun p1 p2 p3
+-------------------------------------
+$0      :=././TC150402A.sh;Shell script name
+$1      :=p1          ;#1 para
+$?      :=0           ;last statment status
+$#      :=3           ;para count
+$*      :=p1 p2 p3    ;para list
+shift(N):=            ;shift(N),para move forward N(p3->p2,->2,.)
+$@      :=p2 p3    ;para list
+output: done.

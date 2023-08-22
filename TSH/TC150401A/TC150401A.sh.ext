@@ -1,0 +1,12 @@
++++
+date = "2015-04-01"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "print time format"
+tags = [
+    "Time"
+]
+!template = md2.template
+!domain = ""
++++

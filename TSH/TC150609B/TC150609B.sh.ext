@@ -1,0 +1,14 @@
++++
+date = "2015-06-09"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "shell cmd usage: while,expr"
+tags = [
+    "Loop",
+    "L-while",
+    "L-expr"
+]
+!template = md2.template
+!domain = ""
++++

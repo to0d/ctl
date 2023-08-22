@@ -1,0 +1,26 @@
+Result: bin boot dev etc home init lib lib32 lib64 libx32 media mnt opt proc root run sbin snap srv sys tmp usr var
+It is a list:
+  bin
+  boot
+  dev
+  etc
+  home
+  init
+  lib
+  lib32
+  lib64
+  libx32
+  media
+  mnt
+  opt
+  proc
+  root
+  run
+  sbin
+  snap
+  srv
+  sys
+  tmp
+  usr
+  var
+output: done.

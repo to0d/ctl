@@ -1,0 +1,10 @@
+test
+atest
+testx
+textx
+testxx
+$test
+.test
+^test
+xx123yyy
+xxyyy
