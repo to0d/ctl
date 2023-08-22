@@ -1,0 +1,17 @@
++++
+date = "2022-01-25"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test IPv6"
+tags = [
+    "AF_INET6",
+    "IPv6",
+    "Socket",
+    "TC220125C"
+]
+!template = md2.template
+!domain = ""
++++
+
+- why **bind err: 99** - 2022/01/25 @TODO

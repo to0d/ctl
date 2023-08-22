@@ -1,0 +1,12 @@
++++
+date = "2015-06-02"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Binary Search"
+tags = [
+    "BinarySearch"
+]
+!template = md2.template
+!domain = ""
++++

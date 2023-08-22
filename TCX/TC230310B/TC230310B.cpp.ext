@@ -1,0 +1,13 @@
++++
+date = "2023-03-10"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "C11 Strongly-typed enums"
+tags = [
+    "Cxxv11",
+    "Cxx-enum-class"
+]
+!template = md2.template
+!domain = ""
++++

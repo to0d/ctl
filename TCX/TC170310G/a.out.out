@@ -1,0 +1,1 @@
+input: s=(1,2,3), max_size=230584300921369395, *begin=1; output: s=(), max_size=230584300921369395, *begin=0

@@ -1,0 +1,19 @@
+---------- LEX Content ----------
+%{
+#include <stdio.h>
+%}
+
+%%
+[0123456789]+     printf("NUMBER\n");
+[a-zA-Z][a-zA-Z0-9]*  printf("word\n");
+%%
+---------- TEST Content ----------
+123 abc a123 12a12
+---------- Parse ----------
+NUMBER
+ word
+ word
+ NUMBER
+word
+
+output: done!

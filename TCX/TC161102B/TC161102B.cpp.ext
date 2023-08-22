@@ -1,0 +1,12 @@
++++
+date = "2016-11-02"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test c++ 指向对象成员的指针"
+tags = [
+    "Cxx-Class"
+]
+!template = md2.template
+!domain = ""
++++

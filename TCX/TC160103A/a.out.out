@@ -1,0 +1,3 @@
+CSingleton1::construct
+CSingleton2::construct
+output: CSingleton1=101, CSingleton2=102

@@ -1,0 +1,29 @@
++++
+date = "2016-07-22"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "基于状态机解析SQL Debug语句"
+tags = [
+    "FSM"
+    "Parser",
+    "Publication"
+]
+template = blog_md.template
+!id = ""
+!domain = ""
++++
+
+### Overview
+
+- 通过 %%DFA%% 实现 %%词法分析%% @TAG(DFA)
+- 通过 %%NFA%% 实现 %%语法分析%% @TAG(DFA)
+    - 是一种 **Recursive-descent parsing**
+    - 参考 [龙书 - 2.4 Parsing](%learn-dragon-book-2-parsing)
+
+
+### History
+
+- 2016-07-22 Init
+- 2016-09-02 Support {{@$#}} 
+- 2020-08-24 Porting to IC2, support {{NBR(*)}}

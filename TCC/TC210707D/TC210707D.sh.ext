@@ -1,0 +1,17 @@
++++
+date = "2021-07-07"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "LLVM IR入门 - 6 function 调用约定"
+tags = [
+    "LLT",
+    "LLVM-IR",
+    "L210706A",
+    "x86-Assembler",
+    "li-func",
+    "Calling-Convention"
+]
+!template = md2.template
+!domain = ""
++++

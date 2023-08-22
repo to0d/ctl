@@ -1,0 +1,12 @@
++++
+date = "2014-07-25"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test C pointer"
+tags = [
+    "Pointer"
+]
+!template = md2.template
+!domain = ""
++++

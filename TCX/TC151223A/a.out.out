@@ -1,0 +1,23 @@
+sizeof(char)  =1
+sizeof(short) =2
+sizeof(int)   =4
+sizeof(long)  =8
+sizeof(float) =4
+sizeof(double)=8
+sizeof(A)=16, sizeof(B)=24
+Offset B::a1 char  = 0
+Offset B::a2 int   = 4
+Offset B::a3 short = 8
+Offset B::a4 char  = 10
+Offset B::a5 doubl = 16
+
+sizeof(EmptyClass)  = 1
+sizeof(EmptyStruct) = 1
+
+sizeof(pVoid)       = 8
+sizeof(BaseClassWithVirtualFunction)        = 8
+sizeof(DerivedClassWithoutVirtualFunction1) = 8
+sizeof(DerivedClassWithVirtualFunction2)    = 8
+sizeof(BaseClassWithoutVirtualFunction)     = 1
+sizeof(VirtualDerivedClass)                 = 8
+output: done!

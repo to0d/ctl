@@ -1,0 +1,36 @@
+---------- LEX Content ----------
+%{
+#include <stdio.h>
+%}
+
+%%
+[a-zA-Z][a-zA-Z0-9]*        printf("WORD ");
+[a-zA-Z0-9\/.-]+            printf("FILENAME ");
+\"                          printf("QUOTE ");
+\{                          printf("OBRACE ");
+\}                          printf("EBRACE ");
+;                           printf("SEMICOLON ");
+\n                          printf("\n");
+[ \t]+                      /* ignore whitespace */;
+%%
+---------- TEST Content ----------
+logging{
+    category lame-servers { null; };
+    category cname { null; };
+};
+
+zone "." {
+    type hint;
+    file "/etc/bind/db.root";
+}
+---------- Parse ----------
+WORD OBRACE 
+WORD FILENAME OBRACE WORD SEMICOLON EBRACE SEMICOLON 
+WORD WORD OBRACE WORD SEMICOLON EBRACE SEMICOLON 
+EBRACE SEMICOLON 
+
+WORD QUOTE FILENAME QUOTE OBRACE 
+WORD WORD SEMICOLON 
+WORD QUOTE FILENAME QUOTE SEMICOLON 
+EBRACE 
+output: done!

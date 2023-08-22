@@ -1,0 +1,5 @@
+int A:: *pc = &A::c;:a.*p1     = 3
+A* pa = &a;         :pa->*pc   = 3
+int (A:: *pfc)() const = &A::func;:(a.*pfc)()= 3
+int (A:: *pfd)() = &A::fund;:(a.*pfd)()= 4
+output: done!

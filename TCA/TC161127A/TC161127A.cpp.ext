@@ -1,0 +1,16 @@
++++
+date = "2016-11-27"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "求解图 最短路径 问题"
+tags = [
+    "Dijkstra",
+    "Graph"
+]
+!template = md2.template
+!domain = ""
++++
+
+- refer [点缀星辰 算法系列 - 4 Dijkstra algorithm 讨论](%"2014-06-29 点缀星辰 算法系列 ITeye.html") @TAG(Dijkstra)
+

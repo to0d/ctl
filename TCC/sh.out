@@ -1,0 +1,24 @@
+./TC150528A: output: done!
+./TC150528B: output: done!
+./TC150528C: output: done!
+./TC150528D: output: done!
+./TC150528E: output: done!
+./TC150528F: output: done!
+./TC150528G: output: done!
+./TC160722A: output: done!
+./TC170514A: output: done!
+./TC210706A: output: rc=0;
+./TC210706B: output: done!
+./TC210706C: output: done!
+./TC210706D: output: rc=125;
+./TC210706E: output: rc=255;
+./TC210706F: output: rc=123;
+./TC210706G: output: rc=0;
+./TC210706H: output: rc=10;
+./TC210707A: output: rc=4;
+./TC210707B: output: rc=1;
+./TC210707C: output: rc=1;
+./TC210707D: output: done!
+./TC230324A: output: done
+./TC230513A: output: done
+./TC230513B: output: 3 output: done

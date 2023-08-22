@@ -1,0 +1,5 @@
+zone "." {
+    type  hint2;
+    file  "/etc/bind/db.root";
+    type  hint;
+};

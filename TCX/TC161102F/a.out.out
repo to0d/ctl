@@ -1,0 +1,44 @@
+000: #include <stdio.h>
+#include <fcntl.h>  
+#include <sys/types.h>  
+#include <sys/stat.h>  
+#include <unistd.h>  
+  
+int main( void )  
+{  
+    char basePath[1000];
+    char basePath2[1000];
+
+    //get the current absoulte path
+    memset(basePath,'\0',sizeof(basePath));
+    getcwd(basePath, 999);
+    strcat(basePath,"/");
+    memcpy(basePath2, basePath, sizeof(basePath));
+    
+    strcat(basePath,"TC161102F.c");
+    strcat(basePath2,"out2.c");
+    
+    if(access(basePath, F_OK) != 0)  
+    {   printf("file not found......\n" ); 
+        return 0;  
+    }  
+  
+    int fin = open(basePath, O_RDONLY, 0777);  
+    int fout = open(basePath2, O_WRONLY|O_CREAT, 0777);  
+  
+    char buff[1024] = {'\0'};  
+    int len = 0;  
+    int i = 0;
+    while((len = read(fin, buff, sizeof(buff))) > 0)  
+    {  
+        printf("%03d: %s", i++, buff);
+        write(fout, buff, len);  
+    }  
+  
+    close(fin);  
+    close(fout); 
+    
+    printf( "\noutput: done.\n" );
+    return 0;  
+}  
+output: done.

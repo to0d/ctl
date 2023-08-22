@@ -1,0 +1,36 @@
++++
+date = "2019-07-27"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "中文转拼音转"
+tags = [
+    "pinyin4j",
+    "拼音",
+    "Publication"
+]
+template = blog_md.template
+!domain = ""
+!link = ""
+id = "test-pinyin4j-cn-to-pinyin"
+!index_word_group=false
++++
+
+## Note
+
+为了在 [iNote Server](@iNote) 更好的搜索中文内容（懒得切换输入法），计划引入 [](@拼音) 支持。目标是实现通过简单输入几个英文字母，直接查询到对应的中文字段。比如输入 `ZG`，可以查询到 `中国` 。 不过目前暂时没找到合适的 `拼音转中文` 工具，只找到了一个 `中文转拼音` 工具 **pinyin4j** 。 暂时记下来，以后有时间读读代码，看以后是否可以用它实现 `拼音转中文` 转换。
+
+- 实现 iNote 用拼音搜索中文 - 2019-07-27 @TODO
+- pinyin4j (ptag=Java-lib) @TAG(Term, 拼音)
+
+## Refer 
+
+- [test_pinyin4j - Github](https://github.com/to0d/jct/tree/master/test_pinyin4j ) @TAG(pinyin4j, TCJ)
+- [pinyin4j - sourceforge](http://pinyin4j.sourceforge.net/ ) @TAG(pinyin4j)
+- [pinyin4j - doc](https://pinyin4j.sourceforge.net/pinyin4j-doc/ ) @TAG(pinyin4j, javadoc)
+- [](%"2014-10-29 java实现将汉字转为拼音 itRed 博客园.html")
+
+
+
+

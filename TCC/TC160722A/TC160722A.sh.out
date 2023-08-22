@@ -1,0 +1,3 @@
+x.main.ctl.x: TC160722A.c:1818: _testTokenParser: Assertion `bufPos > 0' failed.
+././TC160722A.sh: line 3:  9585 Aborted                 (core dumped) ./x.main.ctl.x
+output: done!

@@ -1,0 +1,13 @@
++++
+date = "2015-03-27"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test c11 - array"
+tags = [
+    "Cxxv11",
+    "std-array"
+]
+!template = md2.template
+!domain = ""
++++

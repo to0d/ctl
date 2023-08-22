@@ -1,0 +1,20 @@
++++
+date = "2018-12-24"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test keyword strictfp"
+tags = [
+    "strictfp"
+]
+template = blog_md.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++
+
+- strictfp 关键字可应用于类、接口或方法
+- 如果你想让你的浮点运算更加精确，
+- 而且不会因为不同的硬件平台所执行的结果不一致的话，可以用关键字
+

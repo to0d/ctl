@@ -1,0 +1,14 @@
++++
+date = "2016-01-16"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "algo string FindCommonString"
+tags = [
+    "String-OJ",
+    "CommonString"
+]
+!template = md2.template
+!domain = ""
++++
+

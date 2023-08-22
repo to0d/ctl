@@ -1,0 +1,15 @@
++++
+date = "2019-06-19"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Find index of substring"
+tags = [
+    "Substring",
+    "KMP",
+    "C-strstr"
+]
+!template = md2.template
+!domain = ""
++++
+

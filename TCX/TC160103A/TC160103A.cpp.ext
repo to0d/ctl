@@ -1,0 +1,12 @@
++++
+date = "2016-01-03"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Singleton example"
+tags = [
+    "Singleton"
+]
+!template = md2.template
+!domain = ""
++++

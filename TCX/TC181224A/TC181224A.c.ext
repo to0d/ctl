@@ -1,0 +1,16 @@
++++
+date = "2018-12-24"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test rand function"
+tags = [
+    "rand",
+    "Random"
+]
+!template = md2.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++

@@ -1,0 +1,12 @@
++++
+date = "2016-10-30"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test std::copy"
+tags = [
+    "std-copy"
+]
+!template = md2.template
+!domain = ""
++++

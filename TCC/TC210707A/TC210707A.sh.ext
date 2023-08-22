@@ -1,0 +1,15 @@
++++
+date = "2021-07-07"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "LLVM IR入门 - 5 switch"
+tags = [
+    "LLT",
+    "LLVM-IR",
+    "L210706A",
+    "li-switch"
+]
+!template = md2.template
+!domain = ""
++++

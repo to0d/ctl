@@ -1,0 +1,13 @@
++++
+date = "2023-03-10"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "C11 override"
+tags = [
+    "Cxxv11",
+    "Cxxv11-override"
+]
+!template = md2.template
+!domain = ""
++++

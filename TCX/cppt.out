@@ -1,0 +1,56 @@
+./TC140725A: output: done.
+./TC140725B: output: done.
+./TC140725C: output: done.
+./TC140725D: output: done.
+./TC150325A: output: double x=1.000000
+./TC150326A: output: done.
+./TC150327A: output: reverse_copy a2: 3 2 1 ; auto a3: a b
+./TC150327B: output: [abc, edf, ght]
+./TC150327C: output: done.
+./TC150327D: 
+./TC150328A: Binary file (standard input) matches
+./TC150328B: output: done.
+./TC150331A: output: done.
+./TC150331B: 
+./TC150331C: output: done!
+./TC150507A: output: done.
+./TC150513A: 
+./TC151223A: output: done!
+./TC151229A: output: s1=string1, s2[0]=s1 s2, *ps3=s41 s42
+./TC160103A: output: CSingleton1=101, CSingleton2=102
+./TC160105A: output: done!
+./TC160105B: output: done!
+./TC160105C: output: done!
+./TC160118A: output: done!
+./TC161030A: output: 1,2,3,
+./TC161030B: 
+./TC161030C: output: Little Endian.
+./TC161101A: output: Inner2A::Inner2A(), InnerA::InnerA()
+./TC161102A: output: done!
+./TC161102B: output: done!
+./TC161102C: output: done!
+./TC161102D: output: done!
+./TC161102E: output: done.
+./TC161102F: printf( "\noutput: done.\n" ); output: done.
+./TC170310A: output: v.at(3) exception: out_of_range: pass
+./TC170310B: output: before swap, size=99, capacity=1000000; after swap, size=99, capacity=99
+./TC170310C: output: before swap, size=99, capacity=1000000; after swap, size=99, capacity=99
+./TC170310D: input: [0,1,2,3,4,5,6,7,8,9]; output: [1,3,5,7,9]
+./TC170310E: output: {1=v1,2=v2,3=v3,4=v4}
+./TC170310F: input: {0=10,1=11,2=12,3=13}; output: {1=11,3=13}
+./TC170310G: input: s=(1,2,3), max_size=230584300921369395, *begin=1; output: s=(), max_size=230584300921369395, *begin=0
+./TC170310H: input: (0,1,2,3,4,5); output: (1,3,5)
+./TC170310I: input: [0,1,2,3,4,5]; output: [1,3,5]
+./TC170310J: input: abcdefgabc; output: cdefgc
+./TC181224A: output: done.
+./TC220125C: 
+./TC221122A: output: [1,2,3,null,null,null,4]
+./TC230213A: output:
+./TC230213B: output: done!
+./TC230310A: output: d1=0, d2=2
+./TC230310B: output: done
+./TC230310C: output: total=10
+./TC230310D: output: total=10
+./TC230310E: output: init1=1, init2=0; init1=2, init2=0
+./TC230310F: output: GFG=0, bool=1, long=1, short=1
+./TC230310G: input: str=str, v=[]; output: str=, v=[str]

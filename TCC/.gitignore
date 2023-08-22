@@ -1,0 +1,4 @@
+*.tmp
+*.o
+*.x
+/TC150528F/y.output

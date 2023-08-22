@@ -1,0 +1,15 @@
++++
+date = "2015-03-31"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "IPC, message queue"
+tags = [
+    "MQ",
+    "Process"
+]
+!template = md2.template
+!domain = ""
++++
+
+- IPC, message queue, need add"-D_XOPEN_SOURCE" @TAG(MQ, D_XOPEN_SOURCE)

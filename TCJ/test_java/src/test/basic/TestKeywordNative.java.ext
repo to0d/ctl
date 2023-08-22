@@ -1,0 +1,15 @@
++++
+date = "2023-08-15"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+!mark = ""
+tags = [
+    "J-native"
+]
+template = blog_md.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++

@@ -1,0 +1,25 @@
++++
+date = "2022-02-24"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "JSSE安全链接"
+tags = [
+    "JSSE",
+    "Publication"
+]
+template = blog_md.template
+!domain = ""
+id = "test-jsse-example-1"
++++
+
+### Create %%jks%% %%Certificate%% by tool %%keytool%% @TAG(jks, keytool)
+
+        keytool -genkey -alias test -keypass 123456 -keyalg RSA -keysize 1024 -validity 365 -keystore test.jks -storepass 123456
+
+        keytool -list -v -keystore test.jks
+
+### 用 %%JSSE%% 创建安全链接 @TAG(JSSE)
+
+- [](%"2015-10-20 Java中使用JSSE实现SSL_TLS安全协议_爵士陈的博客-CSDN博客_jsse.htm")
+

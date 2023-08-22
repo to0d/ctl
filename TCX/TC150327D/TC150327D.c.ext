@@ -1,0 +1,18 @@
++++
+date = "2015-03-27"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "process, daemon"
+tags = [
+    "daemon",
+    "Process"
+]
+!template = md2.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++
+
+- How to kill child: `kill nummber(ps aux | grep x.main | grep -v grep)`

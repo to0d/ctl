@@ -1,0 +1,16 @@
++++
+date = "2021-07-06"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "LLVM IR入门 - 4.3. 转换指令"
+tags = [
+    "LLT",
+    "LLVM-IR",
+    "L210706A",
+    "li-trunc",
+    "cast"
+]
+!template = md2.template
+!domain = ""
++++

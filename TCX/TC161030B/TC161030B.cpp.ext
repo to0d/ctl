@@ -1,0 +1,22 @@
++++
+date = "2016-10-30"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test overload new operator"
+tags = [
+    "Cxx-new",
+    "overload"
+]
+!template = md2.template
+!domain = ""
++++
+
+
+        sizeof(class A)=8
+        sizeof(int)=4
+         
+        A::A(204)
+           00000     D88E0408 CC000000 ........ ........   - ................
+
+        A::~A()

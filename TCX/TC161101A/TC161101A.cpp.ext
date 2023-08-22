@@ -1,0 +1,12 @@
++++
+date = "2016-11-01"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test c++ inner class"
+tags = [
+    "Cxx-Class"
+]
+!template = md2.template
+!domain = ""
++++

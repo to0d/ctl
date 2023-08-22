@@ -1,0 +1,55 @@
++++
+date = "2020-06-29"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "RMI远程调用"
+tags = [
+    "RMI",
+    "Publication"
+]
+template = blog_md.template
+!domain = ""
+id = "test-rmi-remote-call"
++++
+
+## RMI 实现原理
+
+### RMI 对象在 Server 端运行
+
+> Add breakpoint at line 29 (函数 doAction)，然后运行，发现 XAction 对象在Server线程里运行
+
+
+    test.rmi.TestRMI at localhost:58904	
+        Thread [main] (Running)	
+        Daemon System Thread [RMI TCP Connection(2)-192.168.56.1] (Susp
+            TestRMI$XAction.doAction(String) line: 29	
+            NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) 
+            NativeMethodAccessorImpl.invoke(Object, Object[]) line: 62	
+            DelegatingMethodAccessorImpl.invoke(Object, Object[]) line:
+            Method.invoke(Object, Object...) line: 498	
+            UnicastServerRef.dispatch(Remote, RemoteCall) line: 357	
+            Transport$1.run() line: 200	
+            Transport$1.run() line: 197	
+            AccessController.doPrivileged(PrivilegedExceptionAction<T>,
+            TCPTransport(Transport).serviceCall(RemoteCall) line: 196	
+            TCPTransport.handleMessages(Connection, boolean) line: 573	
+            TCPTransport$ConnectionHandler.run0() line: 835	
+            TCPTransport$ConnectionHandler.lambda$run$0() line: 688	
+            335011686.run() line: not available	
+            AccessController.doPrivileged(PrivilegedAction<T>, AccessCo
+            TCPTransport$ConnectionHandler.run() line: 687	
+            ThreadPoolExecutor.runWorker(ThreadPoolExecutor$Worker) lin
+            ThreadPoolExecutor$Worker.run() line: 624	
+            Thread.run() line: 748	
+
+
+### 对象方法检查应该是通过 **网络传输对象序列化、反序列化** 实现 @TAG(序列化)
+   
+- refer [](%"2022-08-31 RMI 理解 KKKKKento的博客 CSDN.html")
+
+## 使用RMI实现远程调用 @TAG(Remote-Call, RMI)
+
+
+
+

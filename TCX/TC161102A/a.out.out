@@ -1,0 +1,21 @@
+A::A(1)
+A::A(2)
+A::Copyof A(1)
+A::Copyof A(2)
+A(1).fun1( A(2) )
+A::Copyof A(2)
+A::~A(2)
+A::~A(2)
+A::~A(1)
+-----------static-----------------
+A::fun2( A(1) )
+static A::ms(10)
+const static A::ms2(20)
+const a.mc(2)
+const ref a.mr(2)
+-----------friend-----------------
+friend::print( ( A(1) )
+FriendOfA::print( ( A(1) )
+output: done!
+A::~A(2)
+A::~A(1)

@@ -1,0 +1,13 @@
++++
+date = "2016-12-12"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Simple Insert Sort"
+tags = [
+    "SimpleInsertSort"
+]
+!template = md2.template
+!domain = ""
++++
+

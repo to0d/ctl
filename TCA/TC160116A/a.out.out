@@ -1,0 +1,1 @@
+input: s=xxcdef234, t=abcdefg12345; output: cdef;

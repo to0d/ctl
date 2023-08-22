@@ -1,0 +1,12 @@
++++
+date = "2023-05-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test gdb script"
+tags = [
+    "gdb-Script"
+]
+!template = md2.template
+!domain = ""
++++

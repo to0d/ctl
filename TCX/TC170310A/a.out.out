@@ -1,0 +1,3 @@
+initialize: 
+vector : size=3, content=0,1,2,
+output: v.at(3) exception: out_of_range: pass

@@ -1,0 +1,13 @@
++++
+date = "2017-03-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "CRC16_IBM_16b_LookUpTable"
+tags = [
+    "CRC"
+]
+!template = md2.template
+!domain = ""
++++
+

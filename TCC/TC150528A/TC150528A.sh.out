@@ -1,0 +1,18 @@
+---------- LEX Content ----------
+cat: TC000028.l: No such file or directory
+
+---------- TEST Content ----------
+123
+abc
+start
+stop
+xxx
+---------- Parse ----------
+123
+abc
+Start command received
+
+Stop command received
+
+xxx
+output: done!

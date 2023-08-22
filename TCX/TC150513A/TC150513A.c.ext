@@ -1,0 +1,28 @@
++++
+date = "2015-05-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "UDP, sigio example"
+tags = [
+    "UDP",
+    "sigio",
+    "Socket"
+]
+!template = md2.template
+!domain = ""
++++
+
+- build err - 2023/07/06 @TODO
+
+        /usr/bin/ld: TC150513A.o: in function `main':
+        /mnt/c/data/public/cppt/TC150513A/TC150513A.c:61: undefined reference to `err_sys'
+        /usr/bin/ld: /mnt/c/data/public/cppt/TC150513A/TC150513A.c:69: undefined reference to `startClientThread'
+        /usr/bin/ld: /mnt/c/data/public/cppt/TC150513A/TC150513A.c:78: undefined reference to `pthread_join'
+        /usr/bin/ld: /mnt/c/data/public/cppt/TC150513A/TC150513A.c:79: undefined reference to `err_sys'
+        /usr/bin/ld: TC150513A.o: in function `startServiceThread':
+        /mnt/c/data/public/cppt/TC150513A/TC150513A.c:98: undefined reference to `service_thread'
+        /usr/bin/ld: /mnt/c/data/public/cppt/TC150513A/TC150513A.c:98: undefined reference to `pthread_create'
+        /usr/bin/ld: /mnt/c/data/public/cppt/TC150513A/TC150513A.c:99: undefined reference to `err_sys'
+        collect2: error: ld returned 1 exit status
+        make: *** [makefile:3: a.out] Error 1

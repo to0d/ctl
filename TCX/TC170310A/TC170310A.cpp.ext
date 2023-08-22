@@ -1,0 +1,27 @@
++++
+date = "2017-03-10"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "vector 下标越界"
+tags = [
+    "std-vector",
+    "std-out_of_range"
+]
+!template = md2.template
+!domain = ""
++++
+
+#### vector 下标越界 @TAG(std-out_of_range)
+
+> 当要获取 std::vector 的第 n 个元素，下面几种方式都可以：
+
+            std::vector<int> vec;  
+            size_t n = 1;  
+            int & i = vec[n];  
+            int & j = *(vec.begin() + n);  
+            int & k = vec.at(n);  
+
+> 但是如果 n 超过了 vector 的下标范围，在几种方式的结果就有区别了。  
+
+> 在 linux 平台只有 at(n) 会抛出 std::out_of_range 异常，而其他两个都不会。

@@ -1,0 +1,12 @@
++++
+date = "2023-02-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "dynamic_cast"
+tags = [
+    "dynamic_cast"
+]
+!template = md2.template
+!domain = ""
++++

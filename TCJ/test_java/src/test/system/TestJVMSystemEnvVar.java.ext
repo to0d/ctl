@@ -1,0 +1,12 @@
++++
+date = "2020-03-29"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Print JVM System Env Var"
+tags = [
+    "ENVVAR"
+]
+template = blog_md.template
+!domain = ""
++++

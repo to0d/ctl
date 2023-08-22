@@ -1,0 +1,2 @@
+socket() failed: Cannot assign requested address
+bind err: 99

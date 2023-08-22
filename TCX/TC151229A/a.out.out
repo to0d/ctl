@@ -1,0 +1,1 @@
+output: s1=string1, s2[0]=s1 s2, *ps3=s41 s42

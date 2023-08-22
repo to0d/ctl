@@ -1,0 +1,13 @@
++++
+date = "2016-12-12"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Shell Insert Sort"
+tags = [
+    "ShellInsertSort"
+]
+!template = md2.template
+!domain = ""
++++
+

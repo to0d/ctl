@@ -1,0 +1,22 @@
++++
+date = "2023-08-01"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Compile windows program"
+tags = [
+    "MinGW"
+]
+!template = md2.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++
+
+### Compile Hello World @UID(TC230801A-1)
+
+        MinGW> g++ TC230801A.cpp -o a.exe
+
+        MinGW> a.exe
+        Hello World!

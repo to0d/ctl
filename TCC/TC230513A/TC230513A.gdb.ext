@@ -1,0 +1,13 @@
++++
+date = "2023-05-13"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "gdb script example: gdb [program] -batch -x [commands_file]"
+tags = [
+    "gdb-Script"
+]
+!template = md2.template
+!domain = ""
++++

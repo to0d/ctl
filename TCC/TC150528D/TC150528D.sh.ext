@@ -1,0 +1,13 @@
++++
+date = "2015-05-28"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "flex Yacc example 4"
+tags = [
+    "Yacc",
+    "byacc"
+]
+!template = md2.template
+!domain = ""
++++

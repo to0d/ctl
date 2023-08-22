@@ -1,0 +1,13 @@
++++
+date = "2016-11-02"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test c++ Copy Constructer and Override Operator = 2"
+tags = [
+    "Cxx-Operator",
+    "override"
+]
+!template = md2.template
+!domain = ""
++++

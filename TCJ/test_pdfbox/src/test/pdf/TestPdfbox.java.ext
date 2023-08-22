@@ -1,0 +1,15 @@
++++
+date = "2019-05-28"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Read pdf text"
+tags = [
+    "PDFBox"
+]
+template = blog_md.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++

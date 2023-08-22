@@ -1,0 +1,24 @@
+dynamic_cast from child class to base class:
+	I am Daughter who pretend to be my mother, I love my parents.
+	I am Daughter who pretend to be my mother, I need to work for my family.
+static_cast from child class to base class:
+	I am Son who pretend to be my father, I love my parents.
+	I am Son who pretend to be my father, I need to work for my family.
+
+dynamic_cast from base class to child class:
+	[null]
+static_cast from base class to child class:
+	I am Mother who pretend to be a my daugher, I love my children.
+	I am Mother who pretend to be a my daugher, I need to study for future.
+
+dynamic_cast to non-related class:
+	[null]
+reinterpret_cast to non-related class:
+	I am a stranger
+
+use dynamic_cast to cast back from static_cast:
+	I am Son who pretend to be my father, I love my parents.
+	I am Son who pretend to be my father, I need to work for my family.
+use dynamic_cast to cast back from reinterpret_cast:
+	[null]
+output: done!

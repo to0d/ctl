@@ -1,0 +1,69 @@
++++
+date = "2018-08-01"
+!rename = ""
+outline = "en_x"
+outline_level = 3
+!top = ""
+mark = "Run Linux program on Windows"
+tags = [
+    "Cross-Loader",
+    "Publication"
+]
+template = blog_code.template
+!domain = ""
+!link = ""
+!index_word_group=false
+!id = ""
++++
+
+## Overview
+
+本代码源自 %%HelloElfLoader%% 项目, 目的是为了学习研究 [](@ELF) 及 [](@Loader) 技术.  
+
+### 跨系统运行程序
+
+现在已经有多种方法可以在Windows上运行Linux程序，例如通过 %%WSL%% or %%MinGW%% , [see !more!](%TOOL-NOTE-OS-HOST-OS) .  
+要使Linux程序可以在Windows正常运行，主要有两个关键技术点:
+
+1. 解析并加载 %%ELF%% 程序, 这里要注意不同系统 %%ABI%% 区别
+2. 模拟Linux [System Call](@SYS-Call)
+
+### Refer 
+
+- [](%"2017-04-25 PRJ 170425 Power Linux on i")
+- [](%"2017-09-17 Learn HelloElfLoader")
+- [](%"Install MinGW on Windows")
+- %%HelloElfLoader%%
+- %%tel_ldr%%
+- %%gelfload%%
+
+## 测试
+
+### 在 Linux 环境中编译目标程序 `hello.c` **x64**
+
+        WSL > gcc -m64 hello.c -o hello.a
+
+### 在 Windows (%%MinGW%%) 中编译 Loader 程序 `TC180801A.cpp`
+
+        MinGW > g++ -m64 TC180801A.cpp -o TC180801A.exe
+
+### 在 Windows 中 运行 TC180801A.exe
+
+        ====== start loading elf ======
+        program table at: 64, 13 x 56
+        section table at: 14712, 64 x 64
+        allocate address at: 0x0 size: 0x5f8
+        allocate address at: 0x1000 size: 0x1f5
+        error: allocate memory at specific address failed
+
+- 虚拟地址冲突 - How to fix - 2018/08/01 @TODO
+
+## 代码
+
+
+
+
+
+
+
+

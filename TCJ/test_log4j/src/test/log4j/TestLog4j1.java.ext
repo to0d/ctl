@@ -1,0 +1,15 @@
++++
+date = "2014-05-18"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Log4j Example"
+tags = [
+    "Log4j"
+]
+template = blog_md.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++

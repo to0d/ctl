@@ -1,0 +1,13 @@
++++
+date = "2017-03-10"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "vector shrink to fit - vector<int> (v).swap(v)"
+tags = [
+    "std-vector"
+]
+!template = md2.template
+!domain = ""
++++
+

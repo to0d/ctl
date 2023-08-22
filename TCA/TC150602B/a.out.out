@@ -1,0 +1,1 @@
+input: target=25, nums=[1,3,5,7,9,11,13,15,23,25,27]; output: pos=9, times=3;

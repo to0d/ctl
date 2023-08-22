@@ -1,0 +1,15 @@
++++
+date = "2021-07-06"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "LLVM IR入门 - 3. 数据表示"
+tags = [
+    "LLT",
+    "LLVM-IR",
+    "L210706A",
+    "llvm-nm"
+]
+!template = md2.template
+!domain = ""
++++

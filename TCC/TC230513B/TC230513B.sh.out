@@ -1,0 +1,6 @@
+Breakpoint 1 at 0x116b: file TC230513B.cpp, line 9.
+$1 = 1
+$2 = 3
+output: 3
+[Inferior 1 (process 9788) exited normally]
+output: done

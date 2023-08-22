@@ -1,0 +1,13 @@
++++
+date = "2023-05-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "gdb 调用函数"
+tags = [
+    "gdb",
+    "DBI"
+]
+!template = md2.template
+domain = "gdb"
++++

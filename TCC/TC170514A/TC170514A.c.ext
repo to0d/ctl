@@ -1,0 +1,25 @@
++++
+date = "2017-05-14"
+outline = "en_x"
+outline_level = 3
+!top = ""
+mark = "How ptrace works - single step"
+tags = [
+    "ptrace",
+    "Publication"
+]
+template = blog_md.template
+domain = "gdb"
++++
+
+### History
+
+- 2016-07-22 Copy from Eli Bendersky's code
+- 2022-11-15 fix !error! - ‘struct user_regs_struct’ has no member named ‘eip’ @TAG(ptrace)
+    - change 'eip' to 'rip' for x64 @TAG(Register-EIP, Register-RIP)
+
+### Refer
+
+- [](%"2011-01-23 How debuggers work - Eli Bendersky's website.html")
+- [](%"2015-04-20 ptrace从i386到x64_朱乐乐在路上的博客-CSDN博客.htm")
+- [](%CPU-45-Register-EIP-TO-RIP)

@@ -1,0 +1,13 @@
++++
+date = "2015-12-29"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "chapter 08 八皇后问题"
+tags = [
+    "程序员面试宝典",
+    "N-Queens"
+]
+!template = md2.template
+!domain = ""
++++

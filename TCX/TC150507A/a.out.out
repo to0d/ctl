@@ -1,0 +1,12 @@
+Service: Thread[1] starting£º
+Client[2]: starting£º
+Server: get connection from 127.0.0.1
+Client[2]: received£ºHello, TCP
+main: Waiting all thread end:
+Client[3]: starting£º
+Server: get connection from 127.0.0.1
+Client[3]: received£ºHello, TCP
+main: Thread[0] end, message=Service Thread 1 return.
+main: Thread[1] end, message=Client Thread 2 return.
+main: Thread[2] end, message=Client Thread 3 return.
+output: done.

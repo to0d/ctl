@@ -1,0 +1,15 @@
++++
+date = "2016-12-04"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "huffman compress"
+tags = [
+    "Huffman"
+]
+!template = md2.template
+!domain = ""
++++
+
+
+- Huffman (ptag=Algo) @TAG(Term, Compress)

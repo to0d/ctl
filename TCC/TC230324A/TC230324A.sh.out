@@ -1,0 +1,8 @@
+readelf: 
+  Compilation Unit @ offset 0x0:
+   Length:        0x1d83 (32-bit)
+   Version:       4
+
+llvm-dwarfdump: 
+0x00000000: Compile Unit: length = 0x00001d83 version = 0x0004 abbr_offset = 0x0000 addr_size = 0x08 (next unit at 0x00001d87)
+output: done

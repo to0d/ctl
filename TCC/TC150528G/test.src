@@ -1,0 +1,5 @@
+heat on
+heat off
+heater mainbuilding
+target temperature 10
+

@@ -1,0 +1,29 @@
++++
+date = "2021-04-30"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "ssh远程登录"
+tags = [
+    "ganymed-ssh2",
+    "Publication"
+]
+template = blog_md.template
+!domain = ""
+id = "test-ganymed-ssh2-remote-login"
++++
+
+## Introduce
+
+- refer []("2020-09-21 Ganymed SSH-2 简介 ganymed-ssh2 爱码者的博客 CSDN.htm")
+
+## 使用 %%ganymed-ssh2%% 实现 %%ssh%% 远程登录 @TAG(Remote-Call, ssh, ganymed-ssh2) @UID(test-ganymed-ssh2-1)
+
+1. vi服务器端的 `/etc/ssh/sshd_config`, 把PasswordAuthentication设成yes
+- ExitCode: 0 succ 1 failure
+- Output:
+
+        Remote:
+        > /home/todd
+        ExitCode: 0
+

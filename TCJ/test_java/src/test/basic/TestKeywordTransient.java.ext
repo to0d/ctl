@@ -1,0 +1,18 @@
++++
+date = "2023-08-15"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test transient"
+tags = [
+    "J-transient"
+]
+template = blog_md.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++
+
+- 当串行化某个对象时，如果该对象的某个变量是 **transient** ，那么这个变量不会被串行化进去
+

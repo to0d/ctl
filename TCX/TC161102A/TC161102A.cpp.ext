@@ -1,0 +1,12 @@
++++
+date = "2016-11-02"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test c++ class: friend, const/static member"
+tags = [
+    "Cxx-Class"
+]
+!template = md2.template
+!domain = ""
++++

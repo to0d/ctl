@@ -1,0 +1,30 @@
++++
+date = "2020-07-11"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "切换当前目录"
+tags = [
+    "jnr-posix",
+    "Publication"
+]
+template = blog_md.template
+!domain = ""
+id = "test-jnr-posix-change-cur-dir"
++++
+
+## Introduce
+
+jnr-posix 是用Java编写的，用于Java的轻量级跨平台 %%Posix%% 仿真层，是 %%JNR%% 项目的一部分。
+
+### Refer
+
+- [](%"2019-06-19 java中动态地切换当前的工作目录cwd CSDN.html")
+- [jnr-posix - GitHub](https://github.com/jnr/jnr-posix#overview ) @TAG(jnr-posix, GitHub)
+- %%JNR%%
+
+### Terms
+
+- jnr-posix (ptag=Java-lib|JNR) @TAG(Term, Posix)
+
+## Change current directory @TAG(CurrentDir, jnr-posix)

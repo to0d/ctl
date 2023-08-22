@@ -1,0 +1,13 @@
++++
+date = "2017-03-10"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "erase set iterator"
+tags = [
+    "std-set"
+]
+!template = md2.template
+!domain = ""
++++
+

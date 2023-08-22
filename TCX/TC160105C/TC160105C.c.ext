@@ -1,0 +1,15 @@
++++
+date = "2016-01-05"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "pthread, mutex"
+tags = [
+    "pthread"
+]
+!template = md2.template
+!domain = ""
+!link = ""
+!index_word_group=false
++++

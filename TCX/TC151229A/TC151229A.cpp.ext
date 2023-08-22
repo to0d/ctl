@@ -1,0 +1,12 @@
++++
+date = "2015-12-29"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test c++ string"
+tags = [
+    "String"
+]
+!template = md2.template
+!domain = ""
++++

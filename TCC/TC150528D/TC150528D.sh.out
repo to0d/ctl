@@ -1,0 +1,27 @@
+---------- LEX Content ----------
+%{
+#include <stdio.h>
+#include "y.tab.h"
+%}
+
+%%
+[0-9]+         return NUMBER;
+heat           return TOKHEAT;
+on|off         return STATE;
+target         return TOKTARGET;
+temperature    return TOKTEMPERATURE;
+\n             /* ignore end of line */;
+[ \t]+         /* ignore whitespace */;
+%%
+---------- TEST Content ----------
+heat on
+heat off
+target temperature 10
+target humidity 20
+---------- Parse ----------
+	Heat turned on or off
+	Heat turned on or off
+	Temperature set
+humidity parse error
+
+output: done!

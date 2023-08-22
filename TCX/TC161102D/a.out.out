@@ -1,0 +1,8 @@
+----------------------------------
+a = a;              :NO        = Copy-No
+A c(a);             :Yes       = Copy-Yes
+A b = a;            :Yes       = Copy-Yes
+----------------------------------
+B b1[2];            :Yes       = New-B;New-B;
+B b2[] = {B(),B()}; :Yes       = New-B;New-B;
+output: done!

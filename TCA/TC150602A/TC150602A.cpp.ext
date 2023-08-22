@@ -1,0 +1,14 @@
++++
+date = "2015-06-02"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Sequence Search"
+tags = [
+    "SequenceSearch"
+]
+!template = md2.template
+!domain = ""
++++
+
+- SequenceSearch (name=Sequence Search, ptag=Algo) @TAG(Term, Search)

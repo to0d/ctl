@@ -1,0 +1,13 @@
++++
+date = "2016-12-09"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Heap Sort"
+tags = [
+    "HeapSort"
+]
+!template = md2.template
+!domain = ""
++++
+
