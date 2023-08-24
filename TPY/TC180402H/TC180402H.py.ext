@@ -5,7 +5,7 @@ date = "2018-04-02"
 !top = ""
 mark = "RegEx Example"
 tags = [
-    "PY-BASIC-TUTORIAL",
+    "L180315A",
     "RegEx"
 ]
 !template = md2.template
