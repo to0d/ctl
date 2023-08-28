@@ -3,15 +3,15 @@ date = "2016-07-22"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "基于状态机解析SQL Debug语句"
+mark = "ALGO: SQL debug command parser base on FSM"
 tags = [
-    "FSM"
     "Parser",
-    "Publication"
+    "FSM",
+    "Topic"
 ]
 template = blog_md.template
 !id = ""
-!domain = ""
+domain = "DBG-Team"
 +++
 
 ### Overview
