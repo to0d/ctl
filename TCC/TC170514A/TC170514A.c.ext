@@ -3,20 +3,19 @@ date = "2017-05-14"
 outline = "en_x"
 outline_level = 3
 !top = ""
-mark = "How ptrace works - single step"
+mark = "ptrace: single step"
 tags = [
-    "ptrace",
-    "Publication"
+    "ptrace"
 ]
 template = blog_md.template
-domain = "gdb"
+domain = "Linux"
 +++
+
 
 ### History
 
+- 2022-11-15 fix !error! - ‘struct user_regs_struct’ has no member named ‘eip’- change 'eip' to 'rip' for x64 @TAG(Register-EIP, Register-RIP)
 - 2016-07-22 Copy from Eli Bendersky's code
-- 2022-11-15 fix !error! - ‘struct user_regs_struct’ has no member named ‘eip’ @TAG(ptrace)
-    - change 'eip' to 'rip' for x64 @TAG(Register-EIP, Register-RIP)
 
 ### Refer
 
