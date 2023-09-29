@@ -1,0 +1,80 @@
++++
+date = "2023-09-29"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "使用objdump与汇编进行分析程序的问题"
+tags = [
+    "objdump",
+    "x86-Assembler"
+]
+template = blog_md.template
+domain = "Assembler"
++++
+
+## Steps
+
+1. Code
+
+        int main(int argc, char *argv[])
+        {
+            sig_register();
+            int a = 10, b = -2, c = 100;
+            char* pstr = 0x00;
+            int d = 100;
+            *pstr = 0x00;
+
+            return 0;
+        }
+
+
+- Run 
+
+
+        
+           > ./a.out
+           
+           [now] received signal=11, thread_id=100
+           ./a.out(+0x131c) [0x7fb1c701c31c]
+           ./a.out(+0x1438) [0x7fb1c701c438]
+           /lib/x86_64-linux-gnu/libc.so.6(+0x43090) [0x7fb1c6e13090]
+        +<-./a.out(+0x15c5) [0x7fb1c701c5c5]
+        |  /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf3) [0x7fb1c6df4083]
+        |  ./a.out(+0x11ce) [0x7fb1c701c1ce]
+        |                          
+        |  > objdump -d a.out
+        |                          
+        |  0000000000001580 <main>:                                            // main frame
+        |   1580:       f3 0f 1e fa             endbr64
+        |   1584:       55                      push   %rbp                    // 保存 rbp 寄存 
+        |   1585:       48 89 e5                mov    %rsp,%rbp
+        |   1588:       48 83 ec 30             sub    $0x30,%rsp
+        |   158c:       89 7d dc                mov    %edi,-0x24(%rbp)
+        |   158f:       48 89 75 d0             mov    %rsi,-0x30(%rbp)
+        |   1593:       b8 00 00 00 00          mov    $0x0,%eax
+        |   1598:       e8 be fe ff ff          callq  145b <sig_register>
+        |   159d:       c7 45 e8 0a 00 00 00    movl   $0xa,-0x18(%rbp)        // 变量 a
+        |   15a4:       c7 45 ec fe ff ff ff    movl   $0xfffffffe,-0x14(%rbp) // 变量 b
+        |   15ab:       c7 45 f0 64 00 00 00    movl   $0x64,-0x10(%rbp)       // 变量 c
+        |   15b2:       48 c7 45 f8 00 00 00    movq   $0x0,-0x8(%rbp)         // 变量 pstr <== addr 0
+        |   15b9:       00      
+        |   15ba:       c7 45 f4 64 00 00 00    movl   $0x64,-0xc(%rbp)
+        |   15c1:       48 8b 45 f8             mov    -0x8(%rbp),%rax         // 变量 pstr ==> %rax
+        +-> 15c5:       c6 00 00                movb   $0x0,(%rax)             // write to addr 0 (%rax) 
+            15c8:       b8 00 00 00 00          mov    $0x0,%eax
+            15cd:       c9                      leaveq
+            15ce:       c3                      retq
+            15cf:       90                      nop
+
+- signal=11 - %%SIGSEGV%%
+- [rbp](@Register-RBP) (当前执行函数的基本地址)
+
+## refer
+
+- [](%"2021-10-03 性能优化 使用objdump分析core堆栈 知乎.html")
+- [](%"2022-11-09 分析一个简单的汇编代码 rbp是什么寄存器 CSDN.htm")
+- [](%"signal.h")
+
+
+
+
