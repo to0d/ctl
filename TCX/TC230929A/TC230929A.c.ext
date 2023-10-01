@@ -6,7 +6,9 @@ date = "2023-09-29"
 mark = "使用objdump与汇编进行分析程序的问题"
 tags = [
     "objdump",
-    "x86-Assembler"
+    "x86-Assembler",
+    "signal",
+    "sigaction"
 ]
 template = blog_md.template
 domain = "Assembler"
