@@ -1,0 +1,56 @@
++++
+date = "2023-10-04"
+outline = "en_x"
+outline_level = 3
+!top = ""
+mark = "addr2line example"
+tags = [
+    "addr2line"
+]
+template = blog_md.template
+domain = "ToolChain"
++++
+
+### addr2line example @TAG(addr2line)
+
+- source 
+
+        hello.c:
+        
+        line 3:  int func(int a, int b)
+        line 4:  {
+        line 5:    return a / b;
+        line 6:  }
+
+
+- `objdump -d hello.a`
+    
+
+            0000000000001149 <func>:
+                1149:       f3 0f 1e fa             endbr64
+                114d:       55                      push   %rbp
+                114e:       48 89 e5                mov    %rsp,%rbp
+                1151:       89 7d fc                mov    %edi,-0x4(%rbp)
+                1154:       89 75 f8                mov    %esi,-0x8(%rbp)
+                1157:       8b 45 fc                mov    -0x4(%rbp),%eax
+                115a:       99                      cltd
+                115b:       f7 7d f8                idivl  -0x8(%rbp)        ======> return a / b;
+                115e:       5d                      pop    %rbp
+                115f:       c3                      retq
+
+
+- `addr2line -e hello.a 115b`
+
+            .../TCC/TC231004B/hello.c:5
+
+
+
+
+
+
+
+
+
+
+
+

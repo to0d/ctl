@@ -1,0 +1,85 @@
++++
+date = "2023-10-04"
+outline = "en_x"
+outline_level = 3
+!top = ""
+mark = "symbol related tools"
+tags = [
+    "readelf",
+    "objdump",
+    "nm",
+    "dwarfdump"
+]
+template = blog_md2.template
+domain = "ToolChain"
++++
+
+### **!调试变量符号可能不在 .symtab 段中!** @TAG(symtab-section, symtab) @UID(TC231004A-1)
+
+- source 
+
+        fun.c:
+        
+            int fun1(int xxx)
+            {
+                int yyy = 1;
+                return xxx + yyy;
+            }
+
+
+- symbol table
+
+        readelf_s_fun_o.txt: readelf -s fun.o
+
+            Symbol table '.symtab' contains 16 entries:
+               Num:    Value          Size Type    Bind   Vis      Ndx Name
+                 0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+                 1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS fun.c
+                 2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
+                 3: 0000000000000000     0 SECTION LOCAL  DEFAULT    2 
+                 4: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 
+                 5: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 
+                 6: 0000000000000000     0 SECTION LOCAL  DEFAULT    6 
+                 7: 0000000000000000     0 SECTION LOCAL  DEFAULT    7 
+                 8: 0000000000000000     0 SECTION LOCAL  DEFAULT    9 
+                 9: 0000000000000000     0 SECTION LOCAL  DEFAULT   11 
+                10: 0000000000000000     0 SECTION LOCAL  DEFAULT   13 
+                11: 0000000000000000     0 SECTION LOCAL  DEFAULT   14 
+                12: 0000000000000000     0 SECTION LOCAL  DEFAULT   15 
+                13: 0000000000000000     0 SECTION LOCAL  DEFAULT   12 
+                14: 0000000000000000     4 OBJECT  GLOBAL DEFAULT    2 global_var
+                15: 0000000000000000    28 FUNC    GLOBAL DEFAULT    1 fun1
+
+
+        dwarfdump_a_fun_o.txt: dwarfdump -a fun.o
+
+                < 2><0x0000007f>      DW_TAG_variable
+                                        DW_AT_name                  yyy
+                                        DW_AT_decl_file             0x00000001 /mnt/c/data/public/ctl/TCC/TC231004A/fun.c
+                                        DW_AT_decl_line             0x00000007
+                                        DW_AT_decl_column           0x00000009
+                                        DW_AT_type                  <0x00000039>
+                                        DW_AT_location              len 0x0002: 916c: DW_OP_fbreg -20
+
+
+                < 1><0x0000002d>    DW_TAG_variable
+                                      DW_AT_name                  global_var
+                                      DW_AT_decl_file             0x00000002 /mnt/c/data/public/ctl/TCC/TC231004A/fun.h
+                                      DW_AT_decl_line             0x00000001
+                                      DW_AT_decl_column           0x0000000c
+                                      DW_AT_type                  <0x00000039>
+                                      DW_AT_external              yes(1)
+                                      DW_AT_declaration           yes(1)
+
+
+    - no **dynsym** table in fun.o @TAG(dynsym-section)
+    - internal variable symobl **yyy** was not found in symtab table, it was stored in **.debug_info** section @TAG(symtab-section)
+  
+
+
+
+
+
+
+
+
