@@ -1,0 +1,12 @@
+[1197] debugger started
+[1197] child now at EIP = 0x00401C70
+[1197] create_breakpoint at 0x00401F6E
+[1197] enable_breakpoint instruction= 0x00401F6E, old=0x02DC4583, new=0x02DC45CC
+[1197] breakpoint created
+[1197] child stopped at breakpoint. EIP = 0x00401F6F
+[1197] resume_from_breakpoint at EIP = 0x00401F6F
+[1197] disable_breakpoint instruction= 0x00401F6E, old=0x02DC45CC, new=0x02DC4583
+[1197] 	resume at EIP = 0x00401F72
+[1197] enable_breakpoint instruction= 0x00401F6E, old=0x02DC4583, new=0x02DC45CC
+[1197] resume_from_breakpoint: rc=1
+output: done!

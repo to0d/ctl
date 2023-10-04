@@ -1,0 +1,125 @@
++++
+date = "2023-10-02"
+outline = "en_x"
+outline_level = 3
+!top = ""
+mark = "ptrace: set breakpoint in multi-thread"
+tags = [
+    "ptrace"
+]
+template = blog_md.template
+domain = "Linux"
++++
+
+### Debug multi-thread program in **all-stop** mode @TAG(gdb-all-stop)
+
+        > gdb hello.a
+        (gdb) br 51
+        
+        (gdb) r
+        Starting program: /mnt/c/data/public/ctl/TCC/TC170514C/hello.a
+        [Thread debugging using libthread_db enabled]
+        Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+        [New Thread 0x7fffff7e0700 (LWP 671)]
+        [New Thread 0x7ffffefd0700 (LWP 672)]
+
+        Thread 1 "hello.a" hit Breakpoint 1, main () at hello.c:51
+        51          x += 2;
+
+        (gdb) show non-stop
+        Controlling the inferior in non-stop mode is off.
+
+        (gdb) info threads
+          Id   Target Id                                 Frame
+        * 1    Thread 0x4e6880 (LWP 667) "hello.a"       main () at hello.c:51
+          2    Thread 0x7fffff7e0700 (LWP 671) "hello.a" 0x00000000004851df in clock_nanosleep ()
+          3    Thread 0x7ffffefd0700 (LWP 672) "hello.a" 0x00000000004851df in clock_nanosleep ()
+    
+            Thread 1 ==> hit breakpoint at line 51            x += 2;
+            Thread 2 ==>           stop at line 15            sleep(1);
+            Thread 3 ==>           stop at line 23            sleep(5);
+ 
+
+
+### Debug multi-thread program in **non-stop** mode @TAG(gdb-non-stop)
+
+        > gdb hello.a
+        (gdb) set non-stop on
+        (gdb) show non-stop
+        Controlling the inferior in non-stop mode is on.
+        
+        (gdb) br 51
+        
+        (gdb) r
+        Starting program: /mnt/c/data/public/ctl/TCC/TC170514C/hello.a
+        [Thread debugging using libthread_db enabled]
+        Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+        [New Thread 0x7fffff7e0700 (LWP 679)]
+        [New Thread 0x7ffffefd0700 (LWP 680)]
+
+        Thread 1 "hello.a" hit Breakpoint 1, main () at hello.c:51
+        51          x += 2;
+        (gdb) new_thread1, j=2!
+        [Thread 0x7fffff7e0700 (LWP 679) exited]
+        new_thread2, j=5!
+        [Thread 0x7ffffefd0700 (LWP 680) exited]
+
+        (gdb) info threads
+          Id   Target Id                           Frame
+        * 1    Thread 0x4e6880 (LWP 675) "hello.a" main () at hello.c:51
+
+
+
+
+        401f6e:	83 45 dc 02          	addl   $0x2,-0x24(%rbp)
+
+
+
+### Test breakpoint hit in multi-thread @TAG(Thread-Debug)
+
+- Find breakpoint address by **objdump** - refer [](%"TC170514B.c")
+
+        401f6e:	83 45 dc 02          	addl   $0x2,-0x24(%rbp)
+
+- Update source
+
+
+        /* Create breakpoint and run to it*/
+        debug_breakpoint* bp = create_breakpoint(child_pid, (void*)(0x401f6e)); 
+                                                            -----------------
+                                                                Breakpoint
+                                                                
+        
+- Run 
+
+        > ./x.main.ctl.x hello.a
+        
+        [710] debugger started
+        [711] target started. will run 'hello.a'
+        [710] child now at EIP = 0x00401C70
+        [710] create_breakpoint at 0x00401F6E
+        [710] enable_breakpoint instruction= 0x00401F6E, old=0x02DC4583, new=0x02DC45CC
+        [710] breakpoint created
+        [710] child stopped at breakpoint. EIP = 0x00401F6F
+        new_thread1, j=2!
+        new_thread2, j=5!
+        [710] resume_from_breakpoint at EIP = 0x00401F6F
+        [710] disable_breakpoint instruction= 0x00401F6E, old=0x02DC45CC, new=0x02DC4583
+        [710]   resume at EIP = 0x00401F72
+        [710] enable_breakpoint instruction= 0x00401F6E, old=0x02DC4583, new=0x02DC45CC
+        [710] resume_from_breakpoint: rc=1
+
+        
+    - The breakpoint be hit (main thread)
+    - The other threads are still running
+    - So, by default, the other threads will !not be stopped! when a thread hit a breakpoint, the gdb need to do something to stop other threads in **all-stop** mode @TAG(gdb-all-stop) @UID(TC170514C-1)
+
+
+
+### History
+
+
+### Refer
+
+- [](%"2011-01-23 How debuggers work - Eli Bendersky's website.html")
+

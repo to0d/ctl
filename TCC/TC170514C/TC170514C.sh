@@ -1,5 +1,5 @@
 #/bin/sh
 
-llvm-nm main.x
+./x.main.ctl.x hello.a
 
 echo "output: done!"
