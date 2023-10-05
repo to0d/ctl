@@ -1,0 +1,36 @@
++++
+date = "2023-10-05"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test tool strip"
+tags = [
+    "strip"
+]
+template = blog_md.template
+!domain = ""
++++
+
+
+### What strip did @TAG(strip)
+
+- The following sections were removed
+
+    - .rela.text
+    - .debug_info 
+    - .rela.debug_info
+    - .debug_abbrev
+    - .debug_aranges
+    - .rela.debug_arang
+    - .debug_line
+    - .rela.debug_line
+    - .debug_str
+    - .rela.eh_frame 
+    - .symtab
+    - .strtab  
+
+### Terms
+
+- strip (ptag=Tool) @TAG(symtab)
+
+

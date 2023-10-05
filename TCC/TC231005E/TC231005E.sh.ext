@@ -1,0 +1,40 @@
++++
+date = "2023-10-05"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "test cxx mangling "
+tags = [
+    "mangling"
+]
+template = blog_md.template
+!domain = ""
++++
+
+
+### Cxx function mangling
+
+
+        nm -s test.o:
+
+        int fun1(int a)
+        {
+
+        0000000000000000 T _Z4fun1i     ==>  _Z(GCC的规定) 4(fun1字符个数) 1 (第一个函数) i (int)
+        0000000000000000 B globa_var_1
+        0000000000000013 T main
+
+
+        nm -s test2.o:
+
+        int fun1(int a)
+        {
+
+        0000000000000000 T fun1
+        0000000000000004 C globa_var_1
+        0000000000000013 T main
+
+
+- refer [](%"2021-03-24 Cxx 函数重载的实现机制之name mangling 知乎.html")
+
+ 

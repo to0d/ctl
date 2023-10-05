@@ -5,8 +5,7 @@ date = "2023-05-13"
 !top = ""
 mark = "gdb 调用函数"
 tags = [
-    "gdb",
-    "DBI"
+    "gdb-call"
 ]
 !template = md2.template
 domain = "gdb"
