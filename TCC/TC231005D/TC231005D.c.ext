@@ -1,0 +1,15 @@
++++
+date = "2023-10-05"
+outline = "en_x"
+outline_level = 3
+!top = ""
+mark = "运行时打桩"
+tags = [
+    "打桩"
+]
+template = blog_md.template
+domain = "ToolChain"
++++
+
+- 运行 `LD_PRELOAD="./mymalloc.so" ./test.a`
+
