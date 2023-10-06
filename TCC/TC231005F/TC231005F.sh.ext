@@ -31,6 +31,6 @@ template = blog_md.template
 
 ### Terms
 
-- strip (ptag=Tool) @TAG(symtab)
+- strip (ptag=Tool) @TAG(Term, symtab)
 
 
