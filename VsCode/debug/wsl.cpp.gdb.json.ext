@@ -1,0 +1,16 @@
++++
+date = "2023-10-22"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "VSCode远程调试配置文件(WSL gdb)"
+tags = [
+    "Remote-Debug"
+]
+!template = md2.template
+!domain = ""
+!id = ""
+!link = ""
+!index_word_group=false
++++
