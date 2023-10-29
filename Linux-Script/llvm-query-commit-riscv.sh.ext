@@ -1,0 +1,19 @@
++++
+date = "2023-10-29"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "query all riscv commits"
+tags = [
+    "git-log-grep",
+    "git-log",
+    "RISCV",
+    "LLVM"
+]
+!template = md2.template
+!domain = ""
+!id = ""
+!link = ""
+!index_word_group=false
++++
