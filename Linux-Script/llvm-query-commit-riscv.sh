@@ -10,12 +10,12 @@ rm -f riscv_sources.txt
 rm -f riscv_commits.txt
 rm -f riscv_total.txt
 
-commit_list=$(git log --before="2018-12-12" --grep="riscv" -i | grep -e "^commit" | awk '{print $2}' | tac)
+commit_list=$(git log --before="2018-12-30" --grep="riscv" -i | grep -e "^commit" | awk '{print $2}' | tac)
 for commit in $commit_list
 {
     echo "check: " $commit
     git show $commit > _tmp1.txt
-    title=$(cat _tmp1.txt | grep -e "\[RISCV\]" -e "\[riscv\]" -e "\[RISC-V\]" -e "\[risc-v\]")
+    title=$(cat _tmp1.txt | grep -e "\[RISCV" -e "\[riscv" -e "\[RISC-V" -e "\[risc-v")
     if [ ! "$title" = "" ] 
     then
         git show $commit | grep "+++ b" | cut -b 7- > _tmp1.txt
