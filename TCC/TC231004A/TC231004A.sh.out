@@ -1,0 +1,3 @@
+objdump: fun.o: not a dynamic object
+objdump: fun.o: invalid operation
+output: done!

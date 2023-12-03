@@ -1,0 +1,13 @@
++++
+date = "2023-12-03"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "LLVM Pass - standalone project"
+tags = [
+    "HelloPass",
+    "LLVM-Pass"
+]
+!template = md2.template
+!domain = ""
++++
