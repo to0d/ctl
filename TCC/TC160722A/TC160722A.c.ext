@@ -3,7 +3,7 @@ date = "2016-07-22"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "ALGO: SQL debug command parser base on FSM"
+mark = "Compiler: SQL debug command parser base on FSM"
 tags = [
     "Parser",
     "FSM",

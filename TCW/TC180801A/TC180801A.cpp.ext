@@ -30,7 +30,7 @@ template = blog_code.template
 
 ### Refer 
 
-- [](%"2017-04-25 PRJ 170425 Power Linux on i")
+- [](%PRJ-170425)
 - [](%"2017-09-17 Learn HelloElfLoader")
 - [](%"Install MinGW on Windows")
 - %%HelloElfLoader%%
