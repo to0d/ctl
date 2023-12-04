@@ -2,13 +2,13 @@
 
 OPT_VER_STR=`opt --version | grep version | awk '{print $4}' | awk -F . '{print $1}'`
 OPT_VER=`expr $OPT_VER_STR`
-OPT_ARG=
+OPT_ARG=-debug-pass=Structure
 
 if [ $OPT_VER -gt 10 ] 
 then
     OPT_ARG=$OPT_ARG" -enable-new-pm=0"
 fi
 
-opt -load ./mypass.so -hello hello.bc -o /dev/null $OPT_ARG
-opt -load ./mypass.so -hello2 hello.bc -o /dev/null -time-passes $OPT_ARG
+opt -load ./loop_pass.so -myloop hello.bc -o /dev/null $OPT_ARG
+
 echo "output: done!"
