@@ -12,7 +12,7 @@ tags = [
 !domain = ""
 +++
 
-- ScalarEvolutionWrapperPass (ptag=LLVM-Pass) @TAG(Term, Loop, SCEV)
+- ScalarEvolutionWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term, Loop, SCEV)
 - SCEV (name=Scalar Evolution, ptag=FEA) @TAG(Term, Loop)
 
 - [llvm::ScalarEvolution Class Reference](https://llvm.org/doxygen/classllvm_1_1ScalarEvolution.html ) @TAG(SCEV)

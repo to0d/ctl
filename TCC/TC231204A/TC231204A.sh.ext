@@ -6,13 +6,14 @@ date = "2023-12-04"
 mark = "LLVM Loop Pass - LoopInfoWrapperPass"
 tags = [
     "LoopInfoWrapperPass",
-    "LLVM-Pass"
+    "LLVM-Pass",
+    "LLVM-LegacyPassManager"
 ]
 !template = md2.template
 !domain = ""
 +++
 
-- LoopInfoWrapperPass (ptag=LLVM-Pass) @TAG(Term, Loop)
+- LoopInfoWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term, Loop)
 
 - refer []("2019-06-30 LLVM使用其他Pass的结果 - 转换无极限 - 博客园.htm")
 - [llvm::LoopInfoWrapperPass Class Reference](https://llvm.org/doxygen/classllvm_1_1LoopInfoWrapperPass.html ) @TAG(LoopInfoWrapperPass)

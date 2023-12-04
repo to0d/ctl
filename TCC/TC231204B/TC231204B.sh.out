@@ -1,0 +1,5 @@
+expr: missing operand
+Try 'expr --help' for more information.
+././TC231204B.sh: line 7: [: -gt: unary operator expected
+opt: hello.bc: error: Unknown attribute kind (68) (Producer: 'LLVM14.0.6' Reader: 'LLVM 10.0.0')
+output: done!
