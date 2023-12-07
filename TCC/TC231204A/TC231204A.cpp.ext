@@ -13,7 +13,10 @@ tags = [
 !domain = ""
 +++
 
+
 - LLVM-LoopInfoWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term, Loop)
 
 - refer []("2019-06-30 LLVM使用其他Pass的结果 - 转换无极限 - 博客园.htm")
 - [llvm::LoopInfoWrapperPass Class Reference](https://llvm.org/doxygen/classllvm_1_1LoopInfoWrapperPass.html ) @TAG(LLVM-LoopInfoWrapperPass)
+
+- Debug opt passes - `opt -debug-pass=Structure` @TAG(debug-llvm)

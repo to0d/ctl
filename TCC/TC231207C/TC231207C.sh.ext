@@ -1,0 +1,15 @@
++++
+date = "2023-12-07"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Dump clang AST"
+tags = [
+    "AST"
+]
+!template = md2.template
+!domain = ""
++++
+
+- dump ast - `clang -cc1 -ast-dump hello.c` @TAG(debug-llvm)
+- dump ast - `clang -Xclang -ast-dump hello.c` @TAG(debug-llvm)
