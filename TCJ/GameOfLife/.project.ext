@@ -1,0 +1,12 @@
++++
+date = "2019-09-28"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+!mark = ""
+tags = [
+    "GameOfLife"
+]
+!template = md2.template
+!domain = ""
++++
