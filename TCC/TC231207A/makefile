@@ -9,4 +9,5 @@ loop_pass.so: TC231207A.cpp
 clean:
 	rm -f *.so
 	rm -f *.bc
+	rm -f *.ll
 
