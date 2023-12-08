@@ -1,10 +1,10 @@
-main: hello.ll loop_pass.so
+main: hello.ll mypass.so
 
 hello.ll: hello.c
 	clang -emit-llvm hello.c -S -o hello.ll
 
-loop_pass.so: TC231208A.cpp
-	`llvm-config --bindir`/clang  -shared  -fPIC `llvm-config --cxxflags` `llvm-config --ldflags` TC231208A.cpp -o loop_pass.so
+mypass.so: TC231208A.cpp
+	`llvm-config --bindir`/clang++ -shared -fPIC -o mypass.so TC231208A.cpp `llvm-config --cxxflags --ldflags --libs`
  
 clean:
 	rm -f *.so

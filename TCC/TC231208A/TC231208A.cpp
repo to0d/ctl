@@ -6,13 +6,13 @@
 
 using namespace llvm;
 
-#define DEBUG_TYPE "LoopPass"
+#define DEBUG_TYPE "MyPass"
 
 namespace {
   // LoopPass - The first implementation, without getAnalysisUsage.
-  struct LoopPass : public FunctionPass {
+  struct MyPass : public FunctionPass {
     static char ID; // Pass identification, replacement for typeid
-    LoopPass() : FunctionPass(ID) {}
+    MyPass() : FunctionPass(ID) {}
 
     bool runOnFunction(Function &F) override {      
         MemorySSAWrapperPass *MSP = getAnalysisIfAvailable<MemorySSAWrapperPass>();
@@ -47,6 +47,6 @@ namespace {
   };
 }
 
-char LoopPass::ID = 0;
-static RegisterPass<LoopPass> X("myloop", "My Loop Pass");
+char MyPass::ID = 0;
+static RegisterPass<MyPass> X("mypass", "My Pass");
 

@@ -9,6 +9,6 @@ then
     OPT_ARG=$OPT_ARG" -enable-new-pm=0"
 fi
 
-opt -load ./loop_pass.so -myloop hello.ll -o /dev/null $OPT_ARG
+opt -load ./mypass.so -mypass hello.ll -o /dev/null $OPT_ARG
 
 echo "output: done!"
