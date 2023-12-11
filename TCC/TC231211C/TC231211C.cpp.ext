@@ -1,0 +1,13 @@
++++
+date = "2023-12-11"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Print Class member function info"
+tags = [
+    "LLVM-IR",
+    "LLVM-Pass"
+]
+!template = md2.template
+!domain = ""
++++
