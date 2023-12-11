@@ -1,0 +1,9 @@
+CPPFLAGS=-std=c++11 -I ../include -g -O0
+a.out: TC231211A.o
+	g++ -o $@ $^  -lstdc++
+..c.o:
+	g++ -c $<
+
+clean:
+	rm -f *.o
+	rm -f a.out

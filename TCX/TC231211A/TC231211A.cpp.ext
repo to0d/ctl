@@ -1,0 +1,63 @@
++++
+date = "2023-12-11"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test C/C++ keyword restrict"
+tags = [
+    "C-restrict"
+]
+template = blog_md.template
+domain = "Cxx"
++++
+
+## restrict code 
+
+        int add2(int* __restrict a, int* __restrict b) 
+        {
+            *a = 1;
+            *b = 2;
+            return *a + *b ;
+        }
+
+### restrict O0 disassembly
+    
+        objdump -d a.out
+
+        00000000000011e9 <_Z4add2PiS_>:
+            11e9:	f3 0f 1e fa          	endbr64 
+            11ed:	55                   	push   %rbp
+            11ee:	48 89 e5             	mov    %rsp,%rbp
+            11f1:	48 89 7d f8          	mov    %rdi,-0x8(%rbp)
+            11f5:	48 89 75 f0          	mov    %rsi,-0x10(%rbp)
+            11f9:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+            11fd:	c7 00 01 00 00 00    	movl   $0x1,(%rax)
+            1203:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+            1207:	c7 00 02 00 00 00    	movl   $0x2,(%rax)
+            120d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+            1211:	8b 10                	mov    (%rax),%edx
+            1213:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+            1217:	8b 00                	mov    (%rax),%eax
+            1219:	01 d0                	add    %edx,%eax
+            121b:	5d                   	pop    %rbp
+            121c:	c3                   	retq   
+
+
+### restrict O3 disassembly @TAG(gcc-o3) @TAG(内存依赖)
+
+        0000000000001310 <_Z4add2PiS_>:
+            1310:	f3 0f 1e fa          	endbr64 
+            1314:	c7 07 01 00 00 00    	movl   $0x1,(%rdi)      // *a = 1
+            131a:	b8 03 00 00 00       	mov    $0x3,%eax        // return 3 directly
+            131f:	c7 06 02 00 00 00    	movl   $0x2,(%rsi)      // *b = 2
+            1325:	c3                   	retq   
+            1326:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+            132d:	00 00 00 
+
+
+## refer
+
+- [](%" 2021-02-06 C_Cxx关键字之 restrict - 知乎.htm")
+
+
+
