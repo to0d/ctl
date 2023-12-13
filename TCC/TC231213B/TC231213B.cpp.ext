@@ -1,0 +1,15 @@
++++
+date = "2023-12-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test DependenceAnalysisWrapperPass"
+tags = [
+    "LLVM-DependenceAnalysisWrapperPass",
+    "LLVM-Pass"
+]
+!template = md2.template
+!domain = ""
++++
+
+- LLVM-DependenceAnalysisWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term)

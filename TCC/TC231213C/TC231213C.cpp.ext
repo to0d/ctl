@@ -1,0 +1,15 @@
++++
+date = "2023-12-13"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test BlockFrequencyInfoWrapperPass"
+tags = [
+    "LLVM-BlockFrequencyInfoWrapperPass",
+    "LLVM-Pass"
+]
+!template = md2.template
+!domain = ""
++++
+
+- LLVM-BlockFrequencyInfoWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term)
