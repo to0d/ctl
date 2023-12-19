@@ -3,6 +3,8 @@ source_filename = "test_cpp.cpp"
 target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128"
 target triple = "x86_64-pc-linux-gnu"
 
+@global_a = dso_local global i32 1, align 4
+
 ; Function Attrs: mustprogress noinline optnone uwtable
 define dso_local void @_Z4testv() #0 {
   %1 = alloca i32, align 4
@@ -14,6 +16,8 @@ define dso_local void @_Z4testv() #0 {
   call void @_Z5func1i(i32 noundef 1)
   %4 = load i32, i32* %1, align 4
   call void @_Z5func1i(i32 noundef %4)
+  %5 = load i32, i32* @global_a, align 4
+  call void @_Z5func1i(i32 noundef %5)
   ret void
 }
 

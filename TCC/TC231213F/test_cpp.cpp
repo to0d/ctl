@@ -2,6 +2,8 @@
 
 void func1(int a1);
 
+int global_a = 1;
+
 void test()
 {
     int a = 0;
@@ -10,5 +12,6 @@ void test()
     
     func1(1);
     func1(a);
+    func1(global_a);
 }
 

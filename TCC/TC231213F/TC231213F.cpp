@@ -2,6 +2,7 @@
 #include "llvm/Pass.h"
 #include "llvm/IR/Constants.h"
 #include "llvm/IR/Function.h"
+#include "llvm/IR/GlobalVariable.h"
 #include "llvm/IR/Instructions.h"
 #include "llvm/Support/raw_ostream.h"
 
@@ -34,20 +35,133 @@ struct MyPass : public FunctionPass {
   static char ID; 
   MyPass() : FunctionPass(ID) {}
 
-  bool process_load_instruction(llvm::Value* opd){
-    
-    llvm::Instruction* ins = dyn_cast<Instruction>(opd);
-    if(ins && ins->getOpcode() == Instruction::Load){
-      Value *base = dyn_cast<LoadInst>(ins)->getOperand(0);
-      if (isa<GlobalVariable>(base)){
-          std::string op_base = dyn_cast<GlobalVariable>(base)->getGlobalIdentifier();
-          errs() << " " << op_base << "(global)";
-          return true;
-      }
+  void _process_value(int level, llvm::Value* value){
+              
+    if(isa<User>(value)){
+      _process_user(level, dyn_cast<llvm::User>(value));
+      return;
     }
 
-    return false;
+    errs() << " value=" << *value << "\n";
+    llvm_unreachable("unprocess value type!");
   }
+  
+  void _process_user(int level, llvm::User* user){
+            
+    Type* type = user->getType();
+    
+    errs() << " user: ";
+
+    out_type(type->getTypeID());
+        
+    if( type->getTypeID() == llvm::Type::TypeID::IntegerTyID ){        
+        llvm::ConstantInt* C = dyn_cast<ConstantInt>(user);
+        if( C != NULL ){
+            int val = C->getSExtValue();
+            errs() << " (ConstantInt): " << val << "\n";
+            return;
+        }
+    }
+    
+    llvm::Instruction* I = dyn_cast<Instruction>(user);
+    if( I != NULL ){
+        errs() << " (Instruction): " << *I << "\n";
+        _process_instruction(level+1, I);
+        return;
+    }
+    
+    
+    llvm::GlobalVariable* GV = dyn_cast<GlobalVariable>(user);
+    if( GV != NULL ){
+     
+        std::string op_base = GV->getGlobalIdentifier();
+        errs() << " (GlobalVariable): " << *GV << ", var=\"" << op_base << "\"\n";
+        return;
+    }
+    
+    errs() << " user=" << *user << " typid=" << type->getTypeID() << "\n";
+    llvm_unreachable("unprocess opd type!");
+  }
+
+  void _process_instruction(int level, Instruction* I){
+    
+    out(level);
+        
+    unsigned int num_operands = I->getNumOperands();
+    errs() <<"instruction: op_num=" << num_operands << ", I=" << *I;
+    
+    CallInst* CI = dyn_cast<CallInst>(I);
+    if(CI){
+        
+        Function * func = CI->getCalledFunction();
+        std::string mangled_name = (func->getName()).str();
+        std::string func_name = demangle_func_name(mangled_name); 
+        
+        errs() <<", type=CallInst, func="<< func_name << "\n";
+
+        for(unsigned int r = 0; r < num_operands - 1; r++){
+            
+          out(level + 1);          
+        
+          llvm::Value* opd = CI->getArgOperand(r);
+
+          // every operand should be a User object
+          llvm::User* user = dyn_cast<llvm::User>(opd);
+          assert(user != NULL);          
+         
+          errs() << "operand " << r << ": ";
+          _process_user(level+1, user);
+        }
+        
+        return;
+    }
+    
+    LoadInst* LI = dyn_cast<LoadInst>(I);
+    if(LI){
+        assert(num_operands == 1);    
+        
+        Value* val = LI->getPointerOperand();
+        assert(val != NULL);
+        
+        Type* type = LI->getPointerOperandType();
+        assert(type != NULL);
+        
+        errs() <<", type=LoadInst, getPointerOperandType()=" << *type << "\n" ;    
+
+        out(level+1);
+        
+        errs() << "getPointerOperand(): ";
+        _process_value(level+1, val);
+
+        return;
+    }
+    
+    AllocaInst* AI = dyn_cast<AllocaInst>(I);
+    if(AI){
+                
+        PointerType* PT = AI->getType();
+        Value* value = AI->getArraySize();
+
+        errs() <<", type=AllocaInst, getType()=" << *PT << ", getArraySize()=" << *value << "\n";
+        return;
+    }
+  
+    errs() << "unprocess instruction: " << *I << "\n";
+  }
+  
+  void out_type(llvm::Type::TypeID id){
+     errs() << "typeId=" << id;
+     switch(id){
+        case llvm::Type::TypeID::IntegerTyID: errs() << "(int)"; break;
+        case llvm::Type::TypeID::PointerTyID: errs() << "(ptr)"; break;
+        default:  errs() << "(unknown)"; break;
+     }
+  }
+  
+  void out(int level){
+    for(int i = 0; i < level; ++i)
+        errs() <<"    ";
+  } 
 
   bool runOnFunction(Function &F) override {
     errs() <<"Function: "<< F.getName() << '\n';
@@ -56,74 +170,7 @@ struct MyPass : public FunctionPass {
         if(!isa<CallInst>(I)){
           continue;
         }
-
-        CallInst* CI = dyn_cast<CallInst>(&I);
-
-        Function * func = CI->getCalledFunction();
-        std::string mangled_name = (func->getName()).str();
-        std::string func_name = demangle_func_name(mangled_name);
-        errs() <<"\tcall "<< func_name << ": ";
-
-        unsigned int num_operands = I.getNumOperands() - 1;
-
-        for(unsigned int r = 0; r < num_operands; r++){
-        
-          llvm::Value* opd = CI->getArgOperand(r);
-
-          // every operand should be a User object
-          llvm::User* user = dyn_cast<llvm::User>(opd);
-          assert(user != NULL);
-
-          Type* opd_type = opd->getType();
-
-          bool process = false;
- 
-
-          switch (opd_type->getTypeID()){
-          case llvm::Type::TypeID::HalfTyID:  
-          case llvm::Type::TypeID::BFloatTyID:    
-          case llvm::Type::TypeID::FloatTyID:     
-          case llvm::Type::TypeID::DoubleTyID:    
-          case llvm::Type::TypeID::X86_FP80TyID:  
-          case llvm::Type::TypeID::FP128TyID:     
-          case llvm::Type::TypeID::PPC_FP128TyID: 
-          case llvm::Type::TypeID::VoidTyID:      
-          case llvm::Type::TypeID::LabelTyID:     
-          case llvm::Type::TypeID::MetadataTyID:  
-          case llvm::Type::TypeID::X86_MMXTyID:   
-          case llvm::Type::TypeID::X86_AMXTyID:   
-          case llvm::Type::TypeID::TokenTyID: 
-            break;
-
-          case llvm::Type::TypeID::IntegerTyID: {
-              llvm::ConstantInt* C = dyn_cast<ConstantInt>(user);
-              if( C != NULL ){
-                int val = C->getSExtValue();
-                errs() << " " << val << "(ConstantInt)";
-                process = true;
-              }
- 
-
-             break;              
-            }
-
-          
-          case llvm::Type::TypeID::FunctionTyID:      
-          case llvm::Type::TypeID::PointerTyID:       
-          case llvm::Type::TypeID::StructTyID:        
-          case llvm::Type::TypeID::ArrayTyID:         
-          case llvm::Type::TypeID::FixedVectorTyID:   
-          case llvm::Type::TypeID::ScalableVectorTyID:
-          default:
-            break;
-          }
-
-          if( !process ){
-            errs() << "\nopd type=" << opd_type->getTypeID() << "\n";
-            llvm_unreachable("unprocess opd type!");
-          }
-        }
-        errs() <<"\n";
+        _process_instruction(1, &I);
       }
     }
 
