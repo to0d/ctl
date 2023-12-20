@@ -1,0 +1,14 @@
++++
+date = "2023-12-20"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test TBAA"
+tags = [
+    "TBAA"
+]
+!template = md2.template
+!domain = ""
++++
+
+- TBAA (name=Type Based Alias Analysis) @TAG(Term, alias-analysis)
