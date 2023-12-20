@@ -1,0 +1,12 @@
++++
+date = "2023-12-20"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test NewPassManager - not work"
+tags = [
+    "LLVM-NewPassManager"
+]
+!template = md2.template
+!domain = ""
++++
