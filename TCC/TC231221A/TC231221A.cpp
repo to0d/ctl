@@ -17,6 +17,16 @@ static bool is_llvm_instrinsics(const std::string& func){
   return false;
 }
 
+static int get_inst_loc(Instruction* I){
+  if( I ){
+      int line_number = -1;
+      DILocation* LOC = I->getDebugLoc().get();
+      if( LOC ){
+        return LOC->getLine();
+      }
+  }
+  return -1;
+}
 
 struct MyPass : public FunctionPass {
   static char ID; 
@@ -37,12 +47,8 @@ struct MyPass : public FunctionPass {
           if( is_llvm_instrinsics(callFuncName) )
             continue;
 
-          int line_number = -1;
-          DILocation* LOC = I.getDebugLoc().get();
-          if( LOC ){
-            line_number = LOC->getLine();
-          }
-
+          int line_number = get_inst_loc(&I);
+ 
           errs() << "\tcall func=" << callFuncName << ", loc=" << line_number << "\n";
         }
       }

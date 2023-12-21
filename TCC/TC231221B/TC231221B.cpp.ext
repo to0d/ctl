@@ -1,0 +1,16 @@
++++
+date = "2023-12-21"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Print If Block Info"
+tags = [
+    "LLVM-Debug",
+    "LLVM-Pass",
+    "LLVM-IR",
+    "DEV231128A"
+]
+!template = md2.template
+!domain = ""
++++
+
