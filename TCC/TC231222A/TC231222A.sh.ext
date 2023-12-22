@@ -1,0 +1,12 @@
++++
+date = "2023-12-22"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Test clang/gcc 宏展开"
+tags = [
+    "Macro-expansion"
+]
+!template = md2.template
+!domain = ""
++++
