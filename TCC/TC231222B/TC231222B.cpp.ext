@@ -1,12 +1,14 @@
 +++
-date = "2023-12-21"
+date = "2023-12-22"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "Print block label"
+mark = "Print dbg declare var info"
 tags = [
     "LLVM-Pass",
-    "LLVM-IR"
+    "LLVM-IR",
+    "LLVM-Debug",
+    "llvm.dbg.declare"
 ]
 !template = md2.template
 !domain = ""
