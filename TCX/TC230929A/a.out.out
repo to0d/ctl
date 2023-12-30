@@ -1,0 +1,8 @@
+--------------------------------------
+[now] received signal=11, thread_id=10605
+./a.out(+0x131c) [0x7faec5dba31c]
+./a.out(+0x1438) [0x7faec5dba438]
+/lib/x86_64-linux-gnu/libc.so.6(+0x43090) [0x7faec5bc3090]
+./a.out(+0x15c5) [0x7faec5dba5c5]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf3) [0x7faec5ba4083]
+./a.out(+0x11ce) [0x7faec5dba1ce]

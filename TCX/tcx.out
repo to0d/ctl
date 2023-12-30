@@ -59,3 +59,5 @@
 ./TC230310F: output: GFG=0, bool=1, long=1, short=1
 ./TC230310G: input: str=str, v=[]; output: str=, v=[str]
 ./TC230929A: 
+./TC231211A: 
+./TC231214C: 
