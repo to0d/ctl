@@ -1,0 +1,19 @@
+****** test test_c.ll ******
+define dso_local void @func(i32 noundef %0) #0 {
+  call void @foo1(i32 noundef %6)
+  call void @foo2(i32 noundef 2)
+define dso_local void @run() #2 {
+  call void @foo1(i32 noundef %5) #3
+  call void @foo2(i32 noundef 2) #3
+  call void @func2(i32 noundef 1)
+
+****** test test_cpp.ll ******
+define dso_local void @_Z4funci(i32 noundef %0) #0 {
+  call void @_Z4foo1i(i32 noundef %6)
+  call void @_Z4foo2i(i32 noundef 2)
+define dso_local void @_Z3runv() #2 {
+  call void @_Z4foo1i(i32 noundef %5)
+  call void @_Z4foo2i(i32 noundef 2)
+  call void @_Z5func2i(i32 noundef 1)
+
+output: done!

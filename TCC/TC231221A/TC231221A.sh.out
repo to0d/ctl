@@ -1,0 +1,11 @@
+******** hello_g.ll ********
+Function: name=foo1
+Function: name=foo
+	call func=foo1, loc=15
+	call func=foo2, loc=16
+******** hello_r.ll ********
+Function: name=foo1
+Function: name=foo
+	call func=foo1, loc=-1
+	call func=foo2, loc=-1
+output: done!

@@ -1,34 +1,8 @@
-expr: missing operand
-Try 'expr --help' for more information.
-././TC231204A.sh: line 7: [: -gt: unary operator expected
-Pass Arguments:  -targetlibinfo -tti -targetpassconfig -domtree -loops -myloop -verify -write-bitcode
-Target Library Information
-Target Transform Information
-Target Pass Configuration
-  ModulePass Manager
-    FunctionPass Manager
-      Dominator Tree Construction
-      Natural Loop Information
-      My Loop Pass
-      Module Verifier
-    Bitcode Writer
-Stack dump:
-0.	Program arguments: opt -load ./loop_pass.so -myloop hello.bc -o /dev/null -debug-pass=Structure 
-1.	Running pass 'Function Pass Manager' on module 'hello.bc'.
-2.	Running pass 'My Loop Pass' on function '@main'
- #0 0x00007f8ef6a014ff llvm::sys::PrintStackTrace(llvm::raw_ostream&) (/lib/x86_64-linux-gnu/libLLVM-10.so.1+0x9814ff)
- #1 0x00007f8ef69ff7b0 llvm::sys::RunSignalHandlers() (/lib/x86_64-linux-gnu/libLLVM-10.so.1+0x97f7b0)
- #2 0x00007f8ef6a01ac5 (/lib/x86_64-linux-gnu/libLLVM-10.so.1+0x981ac5)
- #3 0x00007f8efa736420 __restore_rt (/lib/x86_64-linux-gnu/libpthread.so.0+0x14420)
- #4 0x00007f8ef5cab76f /build/glibc-SzIz7B/glibc-2.31/string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:314:0
- #5 0x00007f8efa74a217 llvm::raw_ostream::operator<<(llvm::StringRef) (./loop_pass.so+0x5217)
- #6 0x00007f8efa74a176 llvm::raw_ostream::operator<<(char const*) (./loop_pass.so+0x5176)
- #7 0x00007f8efa749acc (anonymous namespace)::LoopPass::runOnFunction(llvm::Function&) (./loop_pass.so+0x4acc)
- #8 0x00007f8ef6b06d76 llvm::FPPassManager::runOnFunction(llvm::Function&) (/lib/x86_64-linux-gnu/libLLVM-10.so.1+0xa86d76)
- #9 0x00007f8ef6b06ff3 llvm::FPPassManager::runOnModule(llvm::Module&) (/lib/x86_64-linux-gnu/libLLVM-10.so.1+0xa86ff3)
-#10 0x00007f8ef6b074a0 llvm::legacy::PassManagerImpl::run(llvm::Module&) (/lib/x86_64-linux-gnu/libLLVM-10.so.1+0xa874a0)
-#11 0x00000000004bf3f8 main (/usr/lib/llvm-10/bin/opt+0x4bf3f8)
-#12 0x00007f8ef5b44083 __libc_start_main /build/glibc-SzIz7B/glibc-2.31/csu/../csu/libc-start.c:342:3
-#13 0x00000000004ad0de _start (/usr/lib/llvm-10/bin/opt+0x4ad0de)
-././TC231204A.sh: line 12:  3563 Segmentation fault      (core dumped) opt -load ./loop_pass.so -myloop hello.bc -o /dev/null $OPT_ARG
+Function main
+Loop Level 0: 7 Blocks
+Loop Level 1: 3 Blocks
+Loop Level 0: 15 Blocks
+Loop Level 1: 7 Blocks
+Loop Level 2: 3 Blocks
+Loop Level 1: 3 Blocks
 output: done!

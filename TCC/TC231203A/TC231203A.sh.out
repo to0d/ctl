@@ -1,3 +1,23 @@
 Hello: main
 Hello2: main
+===-------------------------------------------------------------------------===
+                      ... Pass execution timing report ...
+===-------------------------------------------------------------------------===
+  Total Execution Time: 0.0000 seconds (0.0005 wall clock)
+
+   ---Wall Time---  --- Name ---
+   0.0004 ( 81.8%)  Bitcode Writer
+   0.0001 ( 15.4%)  Hello World Pass (with getAnalysisUsage implemented)
+   0.0000 (  2.8%)  Module Verifier
+   0.0005 (100.0%)  Total
+
+===-------------------------------------------------------------------------===
+                                LLVM IR Parsing
+===-------------------------------------------------------------------------===
+  Total Execution Time: 0.0000 seconds (0.0007 wall clock)
+
+   ---Wall Time---  --- Name ---
+   0.0007 (100.0%)  Parse IR
+   0.0007 (100.0%)  Total
+
 output: done!

@@ -1,0 +1,7 @@
+*** IR Dump After AlwaysInlinerPass on [module] ***
+*** IR Dump After CoroEarlyPass on main ***
+*** IR Dump After CoroSplitPass on (main) ***
+*** IR Dump After CoroCleanupPass on main ***
+*** IR Dump After AnnotationRemarksPass on main ***
+*** IR Dump After PrintModulePass on [module] ***
+output: done!

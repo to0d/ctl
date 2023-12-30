@@ -1,0 +1,3 @@
+DataLayout::getPointerSizeInBits(): 64
+Module::getSourceFileName(): hello.c
+output: done!

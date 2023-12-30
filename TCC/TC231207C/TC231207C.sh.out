@@ -1,0 +1,5 @@
+hello.c:1:10: fatal error: 'stdio.h' file not found
+#include <stdio.h>
+         ^~~~~~~~~
+1 error generated.
+output: done!
