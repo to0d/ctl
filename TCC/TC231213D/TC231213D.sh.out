@@ -1,0 +1,5 @@
+Error opening './mypass.so': ./mypass.so: cannot open shared object file: No such file or directory
+  -load request ignored.
+opt: Unknown command line argument '-mypass'.  Try: '/usr/lib/llvm-14/bin/opt --help'
+opt: Did you mean '--cycles'?
+output: done!

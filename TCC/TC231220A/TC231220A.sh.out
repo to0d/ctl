@@ -1,0 +1,4 @@
+opt: Unknown command line argument '-mypass'.  Try: '/usr/lib/llvm-14/bin/opt --help'
+opt: Did you mean '--cycles'?
+/usr/lib/llvm-14/bin/opt: unknown pass name 'mypass'
+output: done!
