@@ -1,11 +1,12 @@
 +++
-date = "2023-12-14"
+date = "2024-01-09"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "C call C++ code example"
+mark = "LLVM OpenMP example 1"
 tags = [
-    "extern-C"
+    "OpenMP",
+    "L-ldd"
 ]
 !template = md2.template
 !domain = ""
