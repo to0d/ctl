@@ -33,21 +33,19 @@ struct DFGPass : public ModulePass {
       std::string func_name = F.getName().str();
 
       Graph* control_flow_G = new Graph(&F);
-      Graph* data_flow_G = new Graph(&F);			
-
+      Graph* data_flow_G = new Graph(&F);
+            
       DFGs.insert(pair<string, Graph*>(func_name, data_flow_G));
       CFGs.insert(pair<string, Graph*>(func_name, control_flow_G));
 
       control_flow_G->head.push_back(pair<Value*, Value*>(&*(F.begin())->begin(), &*(F.begin())->begin()));
-      for (Function::iterator BB = F.begin(), BEnd = F.end(); BB != BEnd; ++BB) {
-        BasicBlock *curBB = &*BB;
-        for (BasicBlock::iterator II = curBB->begin(), IEnd = curBB->end(); II != IEnd; ++II) {
+      for (BasicBlock& B : F) {
+
+        for (BasicBlock::iterator II = B.begin(), IEnd = B.end(); II != IEnd; ++II) {
           Instruction* curII = &*II;
-          switch (curII->getOpcode())
-          {
+          switch (curII->getOpcode()){
             // for the case of load operation, we should save the value of it
-            case llvm::Instruction::Load:
-            {
+            case llvm::Instruction::Load:{
               LoadInst* linst = dyn_cast<LoadInst>(curII);
               Value* loadValPtr = linst->getPointerOperand();
               insert(data_flow_G, pair<Value*, Value*>(loadValPtr, curII));
@@ -60,6 +58,7 @@ struct DFGPass : public ModulePass {
               Value* storeVal = sinst->getValueOperand();
               insert(data_flow_G, pair<Value*, Value*>(storeVal, curII));
               insert(data_flow_G, pair<Value*, Value*>(curII, storeValPtr));
+
               data_flow_G->head.push_back(pair<Value*, Value*>(storeValPtr, storeVal));
               break;
             }
@@ -71,9 +70,9 @@ struct DFGPass : public ModulePass {
               if(!is_llvm_instrinsics(f_name))
               {
 
-                if( DFGs[f_name] == NULL){
-                        errs() << "null func=" << f_name << "\n" ;
-                            errs() << "I=" << *cinst << "\n" ;
+                if( DFGs.find(f_name) == DFGs.end()){
+                        // errs() << "null func=" << f_name << "\n" ;
+                        //     errs() << "I=" << *cinst << "\n" ;
                 }
                 else
                 {
@@ -87,40 +86,38 @@ struct DFGPass : public ModulePass {
                         data_flow_G->link.push_back(pair<Value*, Value*>(ret_i, cinst));
                         // insert(data_flow_G, pair<Value*, Value*>(ret_i, cinst));
                     }
+
                 }
-
-									
-
-                
-                
               }
-						}
+              break;
+            }
 						// for other operation, we get all the operand point to the current instruction
             default: {
-              for (Instruction::op_iterator op = curII->op_begin(), opEnd = curII->op_end(); op != opEnd; ++op)
-              {
+              for (Instruction::op_iterator op = curII->op_begin(), opEnd = curII->op_end(); op != opEnd; ++op){
                 Instruction* tempIns;
-                if (dyn_cast<Instruction>(*op))
-                {
+                if (dyn_cast<Instruction>(*op)){
                   insert(data_flow_G, pair<Value*, Value*>(op->get(), curII));
                 }
               }
               break;
             }
           }
+
           BasicBlock::iterator next = II;
           ++next;
           if (next != IEnd) {
             insert(control_flow_G, pair<Value*, Value*>(curII, &*next));
           }
         }
+ 
 
-        Instruction* terminator = curBB->getTerminator();
-        for (BasicBlock* sucBB : successors(curBB)) {
+        Instruction* terminator = B.getTerminator();
+        for (BasicBlock* sucBB : successors(&B)) {
           Instruction* first = &*(sucBB->begin());
           insert(control_flow_G, pair<Value*, Value*>(terminator, first));
         }
       }
+
       writeFileByGraph(&F);
     }
 
@@ -130,11 +127,9 @@ struct DFGPass : public ModulePass {
     return false;
   }
 
-  void DFS_plot(Edge* v, Graph* G, raw_fd_ostream& file)
-  {
+  void DFS_plot(Edge* v, Graph* G, raw_fd_ostream& file){
     Edge* p = v;
-    while (p)
-    {
+    while (p){
       if (mark.find(pair<int, int>(p->v_from, p->v_to)) == mark.end()) 
       {
         mark.insert(pair<int, int>(p->v_from, p->v_to));
@@ -146,6 +141,8 @@ struct DFGPass : public ModulePass {
   }
 
   void writeFileByGraph(Function *F){
+
+    
     std::error_code error;
     enum sys::fs::OpenFlags F_None;
     std::string fun_name = F->getName().str();
