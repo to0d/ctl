@@ -26,7 +26,7 @@ $__clang_call_terminate = comdat any
 @_ZStL8__ioinit = internal global %"class.std::ios_base::Init" zeroinitializer, align 1
 @__dso_handle = external hidden global i8
 @_ZSt4cout = external global %"class.std::basic_ostream", align 8
-@.str = private unnamed_addr constant [14 x i8] c"Hello, world!\00", align 1
+@.str = private unnamed_addr constant [15 x i8] c"Hello, world!\0A\00", align 1
 @0 = private unnamed_addr constant [23 x i8] c";unknown;unknown;0;0;;\00", align 1
 @1 = private unnamed_addr constant %struct.ident_t { i32 0, i32 2, i32 0, i32 22, i8* getelementptr inbounds ([23 x i8], [23 x i8]* @0, i32 0, i32 0) }, align 8
 @llvm.global_ctors = appending global [1 x { i32, void ()*, i8* }] [{ i32, void ()*, i8* } { i32 65535, void ()* @_GLOBAL__sub_I_TC240109B.cpp, i8* null }]
@@ -60,21 +60,17 @@ define internal void @.omp_outlined.(i32* noalias noundef %0, i32* noalias nound
   %4 = alloca i32*, align 8
   store i32* %0, i32** %3, align 8
   store i32* %1, i32** %4, align 8
-  %5 = invoke noundef nonnull align 8 dereferenceable(8) %"class.std::basic_ostream"* @_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc(%"class.std::basic_ostream"* noundef nonnull align 8 dereferenceable(8) @_ZSt4cout, i8* noundef getelementptr inbounds ([14 x i8], [14 x i8]* @.str, i64 0, i64 0))
-          to label %6 unwind label %9
+  %5 = invoke noundef nonnull align 8 dereferenceable(8) %"class.std::basic_ostream"* @_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc(%"class.std::basic_ostream"* noundef nonnull align 8 dereferenceable(8) @_ZSt4cout, i8* noundef getelementptr inbounds ([15 x i8], [15 x i8]* @.str, i64 0, i64 0))
+          to label %6 unwind label %7
 
 6:                                                ; preds = %2
-  %7 = invoke noundef nonnull align 8 dereferenceable(8) %"class.std::basic_ostream"* @_ZNSolsEPFRSoS_E(%"class.std::basic_ostream"* noundef nonnull align 8 dereferenceable(8) %5, %"class.std::basic_ostream"* (%"class.std::basic_ostream"*)* noundef @_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_)
-          to label %8 unwind label %9
-
-8:                                                ; preds = %6
   ret void
 
-9:                                                ; preds = %6, %2
-  %10 = landingpad { i8*, i32 }
+7:                                                ; preds = %2
+  %8 = landingpad { i8*, i32 }
           catch i8* null
-  %11 = extractvalue { i8*, i32 } %10, 0
-  call void @__clang_call_terminate(i8* %11) #7
+  %9 = extractvalue { i8*, i32 } %8, 0
+  call void @__clang_call_terminate(i8* %9) #7
   unreachable
 }
 
@@ -92,10 +88,6 @@ define linkonce_odr hidden void @__clang_call_terminate(i8* %0) #6 comdat {
 declare i8* @__cxa_begin_catch(i8*)
 
 declare void @_ZSt9terminatev()
-
-declare noundef nonnull align 8 dereferenceable(8) %"class.std::basic_ostream"* @_ZNSolsEPFRSoS_E(%"class.std::basic_ostream"* noundef nonnull align 8 dereferenceable(8), %"class.std::basic_ostream"* (%"class.std::basic_ostream"*)* noundef) #1
-
-declare noundef nonnull align 8 dereferenceable(8) %"class.std::basic_ostream"* @_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_(%"class.std::basic_ostream"* noundef nonnull align 8 dereferenceable(8)) #1
 
 ; Function Attrs: nounwind
 declare i32 @__kmpc_global_thread_num(%struct.ident_t*) #3
