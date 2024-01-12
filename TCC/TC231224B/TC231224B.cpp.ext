@@ -3,7 +3,7 @@ date = "2023-12-24"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "Chang func's ArgOperand"
+mark = "Change func's ArgOperand"
 tags = [
     "LLVM-Pass",
     "LLVM-IR",
