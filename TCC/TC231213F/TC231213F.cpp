@@ -154,6 +154,7 @@ struct MyPass : public FunctionPass {
      switch(id){
         case llvm::Type::TypeID::IntegerTyID: errs() << "(int)"; break;
         case llvm::Type::TypeID::PointerTyID: errs() << "(ptr)"; break;
+        case llvm::Type::TypeID::DoubleTyID: errs() << "(double)"; break;
         default:  errs() << "(unknown)"; break;
      }
   }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 void func1(int a1);
+void func2(double c);
 
 int global_a = 1;
 
@@ -13,5 +14,6 @@ void test()
     func1(1);
     func1(a);
     func1(global_a);
+    func2(c);
 }
 
