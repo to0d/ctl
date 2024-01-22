@@ -1,0 +1,18 @@
++++
+date = "2024-01-22"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Clang Plugin - recognize pragma"
+tags = [
+    "Clang-Plugin",
+    "pragma"
+]
+!template = md2.template
+!domain = ""
++++
+
+## Install clang-14 for clang 插件 @TAG(Clang-Plugin)
+
+        sudo apt install clang-14 libclang-14-dev
+        
