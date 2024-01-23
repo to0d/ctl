@@ -3,15 +3,15 @@ date = "2023-12-11"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "Test MemoryDependenceWrapperPass"
+mark = "Test MemoryDependenceAnalysis"
 tags = [
-    "LLVM-MemoryDependenceWrapperPass",
+    "LLVM-MemoryDependenceAnalysis",
     "LLVM-Pass"
 ]
 !template = md2.template
 !domain = ""
 +++
 
-- LLVM-MemoryDependenceWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term, 内存依赖)
+- LLVM-MemoryDependenceAnalysis (ptag=LLVM-AnalysisPass) @TAG(Term, 内存依赖)
 
-- [llvm::MemoryDependenceWrapperPass Class Reference](https://llvm.org/doxygen/classllvm_1_1MemoryDependenceWrapperPass.html ) @TAG(LLVM-MemoryDependenceWrapperPass)
+- [llvm::MemoryDependenceAnalysis Class Reference](https://llvm.org/doxygen/classllvm_1_1MemoryDependenceWrapperPass.html ) @TAG(LLVM-MemoryDependenceAnalysis)

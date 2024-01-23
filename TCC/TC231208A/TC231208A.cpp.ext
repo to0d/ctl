@@ -3,15 +3,15 @@ date = "2023-12-08"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "Test MemorySSAWrapperPass"
+mark = "Test MemorySSA"
 tags = [
-    "LLVM-MemorySSAWrapperPass",
+    "LLVM-MemorySSA",
     "LLVM-Pass"
 ]
 !template = md2.template
 !domain = ""
 +++
 
-- LLVM-MemorySSAWrapperPass (ptag=LLVM-AnalysisPass) @TAG(Term, def-use, SSA)
+- LLVM-MemorySSA (ptag=LLVM-AnalysisPass) @TAG(Term, def-use, SSA)
 
-- [llvm::MemorySSAWrapperPass Class Reference](https://llvm.org/docs/doxygen/classllvm_1_1MemorySSAWrapperPass.html ) @TAG(LLVM-MemorySSAWrapperPass)
+- [llvm::MemorySSA Class Reference](https://llvm.org/docs/doxygen/classllvm_1_1MemorySSAWrapperPass.html ) @TAG(LLVM-MemorySSA)
