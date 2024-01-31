@@ -19,42 +19,49 @@ using namespace llvm;
 
 namespace hpcc{
 
-static int DFG_INST_DEF[8][4] = {
-  {0, -1, -1, 0}, // OTHER
-  {0, -1, -1, 0}, // ARG
-  {0,  0, -1, 0}, // LOAD
-  {1,  0,  1, 0}, // STORE
-  {0, -1, -1, 0}, // CALL
-  {1,  0, -1, 0}, // RET
-  {0, -1, -1, 1}, // ALLOCA
-  {0,  0, -1, 0}, // CAST
+static int DFG_INST_DEF[10][5] = {
+  {0, -1, -1, 0, 0}, // OTHER
+  {0, -1, -1, 0, 0}, // ARG
+  {0,  0, -1, 0, 0}, // LOAD
+  {1,  0,  1, 0, 0}, // STORE
+  {0, -1, -1, 0, 0}, // CALL
+  {1,  0, -1, 0, 0}, // RET
+  {0, -1, -1, 1, 0}, // ALLOCA
+  {0,  0, -1, 0, 0}, // CAST
+  {0, -2,  0, 0, 0}, // MOP
+  {0,  0,  0, 0, 0}, // IGNORE
 };
 
-#define is_void_return(n) (DFG_INST_DEF[(int)(n).type][0] == 1)
-#define get_src1_index(n) (DFG_INST_DEF[(int)(n).type][1])
-#define get_dst1_index(n) (DFG_INST_DEF[(int)(n).type][2])
-#define is_ignore_type(n) (DFG_INST_DEF[(int)(n).type][3] == 1)
-#define is_nolink_node(n) ((n).depend_indexs.empty() && (n).ref_count == 0)
+#define is_void_return(n)  (DFG_INST_DEF[(int)(n).type][0] == 1)
+#define get_src1_index(n)  (DFG_INST_DEF[(int)(n).type][1])
+#define has_multi_input(n) (DFG_INST_DEF[(int)(n).type][1] == -2)
+#define get_dst1_index(n)  (DFG_INST_DEF[(int)(n).type][2])
+#define is_ignore_type(n)  (DFG_INST_DEF[(int)(n).type][3] == 1)
+#define is_nolink_node(n)  ((n).depend_indexs.empty() && (n).ref_count == 0)
 
 static void _copy(const InstNode& A, InstNode& B){
-    B.index     = A.index;
-    B.inst      = A.inst;
-    B.block     = A.block;
-    B.name      = A.name;
-    B.type      = A.type;
-    B.ref_count = A.ref_count;
+    B.index       = A.index;
+    B.inst        = A.inst;
+    B.block       = A.block;
+    B.var_name    = A.var_name;
+    B.inst_name   = A.inst_name;
+    B.type        = A.type;
+    B.ref_count   = A.ref_count;
     B.depend_indexs.clear();
     std::copy(A.depend_indexs.begin(), A.depend_indexs.end(), std::back_inserter(B.depend_indexs));
+    std::copy(A.operand_list.begin(), A.operand_list.end(), std::back_inserter(B.operand_list));
 }
 
 static void _move(InstNode& A, InstNode& B){
-    B.index     = A.index;
-    B.inst      = A.inst;
-    B.block     = A.block;
-    B.name      = A.name;
-    B.type      = A.type;
-    B.ref_count = A.ref_count;
+    B.index       = A.index;
+    B.inst        = A.inst;
+    B.block       = A.block;
+    B.var_name    = A.var_name;
+    B.inst_name   = A.inst_name;
+    B.type        = A.type;
+    B.ref_count   = A.ref_count;
     B.depend_indexs = std::move(A.depend_indexs);
+    B.operand_list = std::move(A.operand_list);
 }
 
 InstNode::InstNode(){
@@ -87,13 +94,16 @@ static NodeType get_inst_type(Instruction* I){
   assert(I);
   switch (I->getOpcode())
   {
-  case Instruction::Store     : return STORE; 
-  case Instruction::Call      : return CALL;  
-  case Instruction::Load      : return LOAD;
-  case Instruction::Ret       : return RET;
-  case Instruction::Alloca    : return ALLOCA;
-  case Instruction::BitCast   :
-  case Instruction::PtrToInt  : return CAST;
+  case Instruction::Store         : return STORE; 
+  case Instruction::Call          : return CALL;  
+  case Instruction::Load          : return LOAD;
+  case Instruction::Ret           : return RET;
+  case Instruction::Alloca        : return ALLOCA;
+  case Instruction::BitCast       :
+  case Instruction::PtrToInt      : return CAST;
+  case Instruction::ExtractValue  :
+  case Instruction::GetElementPtr : return MOP;
+  case Instruction::Br            : return IGNORE;
   default: break;
   }
   return OTHER;
@@ -108,7 +118,8 @@ static std::vector<InstNode> _build_arg_nodes(Function* F){
     node.inst   = NULL;
     node.block  = NULL;
     node.type   = ARG;
-    node.name = get_value_name(arg);
+    node.var_name = get_value_name(arg);
+    node.inst_name = "argument";
     nodes.push_back(std::move(node));
   }
   return nodes;
@@ -118,8 +129,13 @@ static std::vector<InstNode> _build_inst_nodes(Function* F){
   std::vector<InstNode> nodes;
   for(BasicBlock& B : *F){  
     for(Instruction& I : B){
+      NodeType type = get_inst_type(&I);
+      if(type == IGNORE)
+        continue;
+
+      CallInst* CI = NULL; 
       if(isa<CallInst>(I)){
-        CallInst* CI = dyn_cast<CallInst>(&I);
+        CI = dyn_cast<CallInst>(&I);
         std::string callFuncName = CI->getCalledFunction()->getName().str();
         if(is_llvm_instrinsics(callFuncName)){
           continue;
@@ -129,13 +145,15 @@ static std::vector<InstNode> _build_inst_nodes(Function* F){
       InstNode node;
       node.inst   = &I;
       node.block  = &B;
-      node.type   = get_inst_type(&I);
-      if (!is_void_return(node)) {
-        node.name = get_value_name(&I);
+      node.type   = type;
+      node.inst_name = I.getOpcodeName();
+      if (is_void_return(node) || (CI != NULL && CI->getType()->isVoidTy()) ) {
+        node.var_name = "";
       }
       else{
-        node.name = "";
+        node.var_name = get_value_name(&I);
       }
+
       nodes.push_back(std::move(node));
     }
   }
@@ -167,13 +185,24 @@ static void _build_depend_indexs(std::vector<InstNode>& nodes){
     // }
     // last_block = node.block;
 
+    unsigned int num_operands = node.inst == NULL ? 0 : node.inst->getNumOperands();
+    if(node.type == RET && num_operands == 0){
+      continue;
+    }
+
+    for(unsigned int r = 0; r < num_operands; r++){
+      Value* opd = node.inst->getOperand(r);
+      std::string opd_var = get_value_name(opd);
+      node.operand_list.push_back(opd_var);
+    }
+
     // call inst
     if(node.type == CALL)
     {
       CallInst* CI = dyn_cast<CallInst>(node.inst);
       assert(CI);
 
-      unsigned int num_operands = CI->getNumOperands() - 1;
+      num_operands--;
       for(unsigned int r = 0; r < num_operands; r++){
         Value* opd = CI->getArgOperand(r);
         std::string opd_var = get_value_name(opd);
@@ -186,7 +215,7 @@ static void _build_depend_indexs(std::vector<InstNode>& nodes){
       // have return value
       if(!CI->getType()->isVoidTy())
       {
-        std::string dst_var = node.name;
+        std::string dst_var = node.var_name;
         HPC_TRACE4("Update latest_index_map: var=", dst_var, ", index=", node.index);
         latest_index_map[dst_var] = node.index;
       }
@@ -195,35 +224,48 @@ static void _build_depend_indexs(std::vector<InstNode>& nodes){
     else
     {
       if( !is_void_return(node)){
-        HPC_TRACE4("Update latest_index_map: var=\"", node.name, "\", index=", node.index);
-        latest_index_map[node.name] = node.index;
+        HPC_TRACE4("Update latest_index_map: var=\"", node.var_name, "\", index=", node.index);
+        latest_index_map[node.var_name] = node.index;
       }
 
-      int src1_index = get_src1_index(node);
-      HPC_TRACE2("src1_index=", src1_index);
-      if(src1_index != -1){
-        Value* src_val = node.inst->getOperand(src1_index);
-        std::string src_var = get_value_name(src_val);
-        // HPC_TRACE3("src_var=\"", src_var,"\"");
-        if(is_llvm_ir_var(src_var)){
-          InstNode* src_node = LATEST_NODE(src_var);
-          // if(src_node != NULL)
-          // {
-          //   HPC_TRACE2("src_node=", src_node->index);
-          // }
-          // else
-          //   {
-          //     errs() << "not found\n";
-          //     for(auto& it : latest_index_map)
-          //        errs() << it.first << " " << it.second << "\n";
-          //   }
-          LINK_NODE(src_node, &node);
+      if(has_multi_input(node)){
+        for(unsigned int r = 0; r < num_operands; r++){
+          Value* opd = node.inst->getOperand(r);
+          std::string opd_var = get_value_name(opd);
+          if(is_llvm_ir_var(opd_var)){
+            InstNode* src_node = LATEST_NODE(opd_var);
+            LINK_NODE(src_node, &node);
+          }
         }
       }
+      else {
+        
+        int src1_index = get_src1_index(node);
+        HPC_TRACE2("src1_index=", src1_index);
+        if(src1_index  >=0 && src1_index < num_operands){
+          Value* src_val = node.inst->getOperand(src1_index);
+          std::string src_var = get_value_name(src_val);
+          // HPC_TRACE3("src_var=\"", src_var,"\"");
+          if(is_llvm_ir_var(src_var)){
+            InstNode* src_node = LATEST_NODE(src_var);
+            // if(src_node != NULL)
+            // {
+            //   HPC_TRACE2("src_node=", src_node->index);
+            // }
+            // else
+            //   {
+            //     errs() << "not found\n";
+            //     for(auto& it : latest_index_map)
+            //        errs() << it.first << " " << it.second << "\n";
+            //   }
+            LINK_NODE(src_node, &node);
+          }
+        }
+      }   
 
       int dst1_index = get_dst1_index(node);
       HPC_TRACE2("dst1_index=", dst1_index);
-      if(dst1_index != -1){
+      if(dst1_index != -1 && dst1_index < num_operands){
         Value* dst_val = node.inst->getOperand(dst1_index);
         std::string dst_var = get_value_name(dst_val);
         HPC_TRACE4("Update latest_index_map: var=", dst_var, ", index=", node.index);
@@ -247,7 +289,7 @@ class DFGUtilImpl{
     for(InstNode& node: _build_arg_nodes(F)){
       node.index  = index++;
       HPC_TRACE2("New arg node: ", hpcc::to_string(node));
-      node_name_map[node.name] = node.index;
+      node_name_map[node.var_name] = node.index;
       node_list.push_back(std::move(node));
     }
     
@@ -255,8 +297,8 @@ class DFGUtilImpl{
     for(InstNode& node: _build_inst_nodes(F)){
       node.index  = index++;
       HPC_TRACE4("New inst node: ", hpcc::to_string(node), ", inst=", *(node.inst));
-      if(!node.name.empty())
-        node_name_map[node.name] = node.index;
+      if(!node.var_name.empty())
+        node_name_map[node.var_name] = node.index;
       inst_index_map[node.inst] = node.index;
       node_list.push_back(std::move(node));
     }
@@ -269,8 +311,6 @@ class DFGUtilImpl{
       HPC_TRACE1(hpcc::to_string(node));
     }
   }
-
-  std::vector<std::string> dot_output_graph();
 
   std::vector<std::string> list_all_vars(){
     std::vector<std::string> vars;
@@ -297,13 +337,49 @@ std::vector<std::string> DFGUtil::list_all_vars(){
   return impl->list_all_vars();
 }
 
-static std::string _dot_output_node_name(InstNode& node){
-  char tmp[20] = {0};
-  sprintf(tmp, "node_%04d", node.index);
-  return std::string(tmp);
+#define DOT_NODE_NAME_NOLINK "no_link"
+
+class DotUtil{
+
+public:
+  DotUtil(Function* F, const std::vector<InstNode>& node_list);
+  
+  std::vector<std::string> output_graph();
+  std::string output_node_line(const InstNode& node);
+  std::string output_node_name(const InstNode& node);
+  std::string output_node_shape(const InstNode& node);
+  std::string output_node_label(const InstNode& node);
+  std::string output_node_color(const InstNode& node);
+  std::string output_node_name_nolinkhead();
+  std::string output_edge(const std::string& from_name, const InstNode& to_node);
+
+private:
+  std::vector<InstNode> m_node_list;
+  std::vector<std::string> m_node_name_list;
+  std::string m_graph_name;
+  int         m_node_size;
+};
+
+DotUtil::DotUtil(Function* F, const std::vector<InstNode>& node_list){
+  m_graph_name = F->getName().str();
+  std::copy(node_list.begin(), node_list.end(), std::back_inserter(m_node_list));
+
+  m_node_size = node_list.size();
+  m_node_name_list.resize(m_node_size);
 }
 
-static std::string _dot_node_shape(InstNode& node){
+std::string DotUtil::output_node_name(const InstNode& node){
+  std::string node_name = m_node_name_list[node.index];
+  if(node_name.empty()){
+    char tmp[20] = {0};
+    sprintf(tmp, "node_%04d", node.index);
+    node_name = std::string(tmp);
+    m_node_name_list[node.index] = node_name;
+  }
+  return node_name;
+}
+
+std::string DotUtil::output_node_shape(const InstNode& node){
   switch (node.type)
   {
     case ARG: return "ellipse";
@@ -312,27 +388,92 @@ static std::string _dot_node_shape(InstNode& node){
   }
 }
 
-static std::string _dot_node_label(InstNode& node){
-  std::string line = std::to_string(node.index) + ":";
-  if(node.type != ARG){
-    line += get_inst_name(node.inst);
+std::string DotUtil::output_node_label(const InstNode& node){
+  
+  switch (node.type)
+  {
+  case ARG    : return node.var_name +" arg";
+  case LOAD   : 
+    return node.var_name +"=load("+get_value_name(node.inst->getOperand(0))+")";
+  
+  case STORE  : 
+    return "store("+get_value_name(node.inst->getOperand(0))
+               +","+get_value_name(node.inst->getOperand(1))+")";
+  case CALL   :  {
+
+    std::string line = "call ";
+
+    CallInst* CI = dyn_cast<CallInst>(node.inst);
+    assert(CI);
+
+    std::string callFuncName = CI->getCalledFunction()->getName().str();
+    callFuncName = demangle_func_name(callFuncName);
+    line += callFuncName + "(";
+
+    unsigned int num_operands = CI->getNumOperands() - 1;
+    for(unsigned int r = 0; r < num_operands; r++){
+      Value* opd = CI->getArgOperand(r);
+      if(r != 0)
+        line += ",";
+      line += get_value_name(opd);
+    }
+    line += ")";
+
+    if(node.var_name != ""){
+      line = node.var_name + "=" + line;
+    }
+    return line;
+  }  
+  case CAST: 
+    return node.var_name +"=cast("+get_value_name(node.inst->getOperand(0))+")";
+  
+  case RET: 
+    return "ret " + node.var_name;
+
+  case MOP:
+    {
+      std::string line = node.inst_name + "(";
+      int idx = 0;
+      for(auto& opd : node.operand_list){
+        if(idx++ != 0)
+          line += ",";
+        line += opd;
+      }
+      line += ")";
+
+      if(node.var_name != ""){
+        line = node.var_name + " = " + line;
+      }
+      return line;
+    }
+
+  // case ALLOCA : 
+  // case OTHER  : 
+  default: break;
   }
-  else{
-    line += " argument " + node.name;
+
+
+
+  if(node.inst != NULL){
+    switch (node.inst ->getOpcode())
+    {   
+    case Instruction::Alloca : return node.var_name +" alloca";
+    default: break;
+    }
   }
-  return line;
+
+  return get_inst_name(node.inst);
 }
 
-static std::string _dot_node_color(InstNode& node){
+
+std::string DotUtil::output_node_color(const InstNode& node){
 
   if(is_nolink_node(node) && !is_ignore_type(node))
     return "red";
   return "";
 }
 
-#define DOT_NODE_NAME_NOLINK "no_link"
-
-static std::string _dot_output_node_nolinkhead(){
+std::string DotUtil::output_node_name_nolinkhead(){
   std::string line = DOT_NODE_NAME_NOLINK;
   line += "[";
   line += "shape=ellipse";
@@ -342,13 +483,13 @@ static std::string _dot_output_node_nolinkhead(){
   return line;
 }
 
-static std::string _dot_output_node(InstNode& node){
+std::string DotUtil::output_node_line(const InstNode& node){
 
-  std::string line = _dot_output_node_name(node);
+  std::string line = output_node_name(node);
   line += "[";
-  line += "shape=" + _dot_node_shape(node);
-  line += ", label=\"" + _dot_node_label(node) +"\"";
-  std::string color = _dot_node_color(node);
+  line += "shape=" + output_node_shape(node);
+  line += ", label=\"" + output_node_label(node) +"\"";
+  std::string color = output_node_color(node);
   if(color != ""){
     line += ", color=" + color;
   }
@@ -356,21 +497,22 @@ static std::string _dot_output_node(InstNode& node){
   return line;
 }
 
-static std::string _dot_output_edge(const std::string& from_name, InstNode& to_node){
-  auto to_name = _dot_output_node_name(to_node);
+
+std::string DotUtil::output_edge(const std::string& from_name, const InstNode& to_node){
+  auto to_name = output_node_name(to_node);
   std::string line = from_name;
   line += " -> ";
   line += to_name;
   return line;
 }
 
-std::vector<std::string> DFGUtilImpl::dot_output_graph(){
+std::vector<std::string> DotUtil::output_graph(){
   std::vector<std::string> lines;
   
   // output digraph begin
   {
     std::string line = "digraph \"DFG for \'";
-    line += F->getName().str(); // function name
+    line += m_graph_name; // function name
     line += "\' function\" {";
     lines.push_back(line);
   }
@@ -378,33 +520,33 @@ std::vector<std::string> DFGUtilImpl::dot_output_graph(){
   std::vector<int> nolink_indexs;
   
   // output nodes
-  for(InstNode& node : node_list){
+  for(const InstNode& node : m_node_list){
     if(is_nolink_node(node)){
       if(is_ignore_type(node)){
         continue;
       }
       nolink_indexs.push_back(node.index);
     }
-    lines.push_back("\t"+_dot_output_node(node));    
+    lines.push_back("\t"+output_node_line(node));    
   }
 
   // output no-link nodes
   if(!nolink_indexs.empty())
   {
-    lines.push_back(_dot_output_node_nolinkhead());
+    lines.push_back(output_node_name_nolinkhead());
     std::string from_name = DOT_NODE_NAME_NOLINK;
     for(int nolink_index: nolink_indexs){
-      lines.push_back("\t"+_dot_output_edge(from_name, node_list[nolink_index]));
-      from_name = _dot_output_node_name(node_list[nolink_index]);
+      lines.push_back("\t"+output_edge(from_name, m_node_list[nolink_index]));
+      from_name = output_node_name(m_node_list[nolink_index]);
     }
   }
 
   // output edge
-  for(InstNode& node : node_list){
-    auto from_name = _dot_output_node_name(node);   
+  for(const InstNode& node : m_node_list){
+    auto from_name = output_node_name(node);   
     if(!node.depend_indexs.empty()){
       for(int to_index : node.depend_indexs){
-        lines.push_back("\t"+_dot_output_edge(from_name, node_list[to_index]));
+        lines.push_back("\t"+output_edge(from_name, m_node_list[to_index]));
       }
     }
   }
@@ -414,9 +556,11 @@ std::vector<std::string> DFGUtilImpl::dot_output_graph(){
   return lines;
 }
 
-void DFGUtil::output_dot(const std::string& path)
-{
-  std::vector<std::string> lines =  impl->dot_output_graph();
+void DFGUtil::output_dot(const std::string& path){
+
+  DotUtil dot_util(impl->F, impl->node_list);
+
+  std::vector<std::string> lines =  dot_util.output_graph();
   std::ofstream out_file(path);
   if (!out_file.is_open()) {
     llvm::report_fatal_error("unable to open file");
@@ -444,6 +588,7 @@ std::string to_string(NodeType type){
   case RET    : return "RET";
   case ALLOCA : return "ALLOCA";
   case CAST   : return "CAST";
+  case MOP    : return "MOP";
   default:      return "BAD";
   }
 }
@@ -460,8 +605,14 @@ HPCC_TO_STRING_IMPL(InstNode, N){
   out += ", type=";
   out += hpcc::to_string(N->type);
 
-  out += ", name=";
-  out += N->name;
+  out += ", var_name=";
+  out += N->var_name;
+
+  out += ", inst_name=";
+  out += N->inst_name;
+
+  out += ", operand=";
+  out += hpcc::to_string(N->operand_list);
 
   out += ", ref=";
   out += std::to_string(N->ref_count);

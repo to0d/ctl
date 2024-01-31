@@ -19,6 +19,6 @@ $OPT_CMD -load ./mypass.so -mypass test_1.ll --dot-path $script_dir/ -o /dev/nul
 echo ""
 echo ""
 
-dot -Tpng -o test_1.png test_1.dot
+#dot -Tpng -o test_1.png test_1.dot
 
 echo "output: done!"

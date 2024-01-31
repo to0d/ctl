@@ -6,17 +6,19 @@
 
 namespace hpcc{
 
-enum NodeType{OTHER = 0, ARG, LOAD, STORE, CALL, RET, ALLOCA, CAST};
+enum NodeType{OTHER = 0, ARG, LOAD, STORE, CALL, RET, ALLOCA, CAST, MOP, IGNORE};
 
 struct InstNode
 {
-  int                 index;
-  llvm::Instruction*  inst;
-  llvm::BasicBlock*   block;
-  std::string         name;
-  NodeType            type;
-  std::vector<int>    depend_indexs;
-  int                 ref_count;
+  int                       index;
+  llvm::Instruction*        inst;
+  llvm::BasicBlock*         block;
+  std::string               var_name;
+  std::string               inst_name;
+  NodeType                  type;
+  std::vector<int>          depend_indexs;
+  std::vector<std::string>  operand_list;
+  int                       ref_count;
 
   InstNode();
   InstNode(const InstNode& N);
