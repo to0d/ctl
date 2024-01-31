@@ -36,8 +36,9 @@ public:
   DFGUtil(llvm::Function* F);
   ~DFGUtil();
   std::vector<std::string> list_all_vars();
+  const std::vector<InstNode>& get_node_list();
   void output_dot(const std::string& path);
-  bool is_empty_function();
+  static bool is_empty_function(llvm::Function* F);
 
 private:
   class DFGUtilImpl* impl;

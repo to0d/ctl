@@ -8,7 +8,7 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/raw_ostream.h"
 #include "hpcc_dfg_util.h"
-
+#include "hpcc_dot_util.h"
 
 using namespace llvm;
 using namespace hpcc;
@@ -25,14 +25,15 @@ struct MyPass : public ModulePass {
   bool runOnModule(Module &M) override {
 
     for (Function& F : M) {
-      DFGUtil DFG_Util(&F);
-      if(DFG_Util.is_empty_function())
+      if(DFGUtil::is_empty_function(&F))
         continue;
+      
+      DFGUtil DFG_Util(&F);
+      DotUtil DOT_Util(&F, DFG_Util.get_node_list());
+
       // output dot
-      std::string func_name = F.getName().str();
-      func_name = demangle_func_name(func_name);
-      std::string dot_name = dot_path + func_name + ".dot";
-      DFG_Util.output_dot(dot_name);
+      std::string dot_name = dot_path + DOT_Util.get_graph_name() + ".dot";
+      DOT_Util.output_dot(dot_name);
     }
 
 
