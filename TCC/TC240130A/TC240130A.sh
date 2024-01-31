@@ -14,11 +14,11 @@ then
 fi
 
 
-echo "************ test_1 ************"
-$OPT_CMD -load ./mypass.so -mypass test_1.ll --dot-path $script_dir/ -o /dev/null $OPT_ARG
+echo "************ test_3 ************"
+$OPT_CMD -load ./mypass.so -mypass test_3.ll --dot-path $script_dir/ -o /dev/null $OPT_ARG
 echo ""
 echo ""
 
-#dot -Tpng -o test_1.png test_1.dot
+#dot -Tpng -o test_3.png test_3.dot
 
 echo "output: done!"
