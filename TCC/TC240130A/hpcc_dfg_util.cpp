@@ -43,6 +43,7 @@ static void _copy(const InstNode& A, InstNode& B){
     B.block       = A.block;
     B.var_name    = A.var_name;
     B.inst_name   = A.inst_name;
+    B.call_name   = A.call_name;
     B.type        = A.type;
     B.ref_count   = A.ref_count;
     B.depend_indexs.clear();
@@ -56,6 +57,7 @@ static void _move(InstNode& A, InstNode& B){
     B.block       = A.block;
     B.var_name    = A.var_name;
     B.inst_name   = A.inst_name;
+    B.call_name   = A.call_name;
     B.type        = A.type;
     B.ref_count   = A.ref_count;
     B.depend_indexs = std::move(A.depend_indexs);
@@ -135,10 +137,11 @@ static std::vector<InstNode> _build_inst_nodes(Function* F){
         continue;
 
       CallInst* CI = NULL; 
+      std::string callName = "";
       if(isa<CallInst>(I)){
         CI = dyn_cast<CallInst>(&I);
-        std::string callFuncName = CI->getCalledFunction()->getName().str();
-        if(is_llvm_instrinsics(callFuncName)){
+        callName = CI->getCalledFunction()->getName().str();
+        if(is_llvm_instrinsics(callName)){
           continue;
         }        
       }
@@ -148,6 +151,7 @@ static std::vector<InstNode> _build_inst_nodes(Function* F){
       node.block  = &B;
       node.type   = type;
       node.inst_name = I.getOpcodeName();
+      node.call_name = demangle_func_name(callName);
       if (is_void_return(node) || (CI != NULL && CI->getType()->isVoidTy()) ) {
         node.var_name = "";
       }
@@ -387,6 +391,11 @@ HPCC_TO_STRING_IMPL(InstNode, N){
 
   out += ", inst_name=";
   out += N->inst_name;
+
+  if(N->type == CALL){
+    out += ", call_name=";
+    out += N->call_name;
+  }
 
   out += ", operand=";
   out += hpcc::to_string(N->operand_list);

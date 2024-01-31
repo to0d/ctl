@@ -23,7 +23,7 @@ declare void @simd_gemm_init(%struct.GemmExecutor_T* noundef, i16 noundef zeroex
 declare i32 @simd_gemm(%struct.GemmExecutor_T* noundef, i32 noundef, i32 noundef, i32 noundef, i32 noundef, i32 noundef, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext, i8 noundef zeroext) #1
 
 ; Function Attrs: mustprogress noinline optnone uwtable
-define dso_local void @test_1(double* noundef %0, double* noundef %1, double* noundef %2, i32 noundef %3, i32 noundef %4, i32 noundef %5) #3 {
+define dso_local void @test_3(double* noundef %0, double* noundef %1, double* noundef %2, i32 noundef %3, i32 noundef %4, i32 noundef %5) #3 {
   %7 = alloca %struct.GemmExecutor_T*, align 8
   %8 = alloca double*, align 8
   %9 = alloca double*, align 8

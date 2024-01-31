@@ -19,6 +19,12 @@ $OPT_CMD -load ./mypass.so -mypass test_3.ll --dot-path $script_dir/ -o /dev/nul
 echo ""
 echo ""
 
+echo "************ test_3 - test_3.simd_gemm ************"
+$OPT_CMD -load ./mypass.so -mypass test_3.ll --dot-path $script_dir/ --dot-node simd_gemm -o /dev/null $OPT_ARG
+echo ""
+echo ""
+
 #dot -Tpng -o test_3.png test_3.dot
+
 
 echo "output: done!"

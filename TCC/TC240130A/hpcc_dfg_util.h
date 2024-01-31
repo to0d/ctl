@@ -15,6 +15,7 @@ struct InstNode
   llvm::BasicBlock*         block;
   std::string               var_name;
   std::string               inst_name;
+  std::string               call_name;
   NodeType                  type;
   std::vector<int>          depend_indexs;
   std::vector<std::string>  operand_list;

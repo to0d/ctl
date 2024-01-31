@@ -10,10 +10,11 @@ namespace hpcc{
 
 class DotUtil{
 public:
-  DotUtil(Function* F, const std::vector<InstNode>& node_list);
+  DotUtil(llvm::Function* F, const std::vector<InstNode>& node_list);
   ~DotUtil();
   
-  void output_dot(const std::string& path);
+  void output_dot_graph(const std::string& path);
+  void output_dot_call_tree(const std::string& path, const std::string& call_name);
   std::string get_graph_name();
 
 private:

@@ -1,4 +1,4 @@
-digraph "DFG for 'test_1' function" {
+digraph "DFG for 'test_3' function" {
 	node_0000[shape=ellipse, label="%0: arg"]
 	node_0001[shape=ellipse, label="%1: arg"]
 	node_0002[shape=ellipse, label="%2: arg"]

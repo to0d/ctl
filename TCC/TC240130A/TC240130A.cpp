@@ -16,6 +16,7 @@ using namespace hpcc;
 #define DEBUG_TYPE "MyPass"
 
 cl::opt<std::string> dot_path ( "dot-path", cl::desc("Input source file"));
+cl::opt<std::string> dot_node ( "dot-node", cl::desc("Input dot node"));
 
 struct MyPass : public ModulePass {
 
@@ -31,9 +32,19 @@ struct MyPass : public ModulePass {
       DFGUtil DFG_Util(&F);
       DotUtil DOT_Util(&F, DFG_Util.get_node_list());
 
-      // output dot
-      std::string dot_name = dot_path + DOT_Util.get_graph_name() + ".dot";
-      DOT_Util.output_dot(dot_name);
+      std::string dot_node_name = dot_node;
+
+      // output dot graph
+      if(dot_node_name.empty()){
+        std::string dot_name = dot_path + DOT_Util.get_graph_name() + ".dot";
+        DOT_Util.output_dot_graph(dot_name);
+      }
+      // output dot tree
+      else
+      {
+        std::string dot_name = dot_path + DOT_Util.get_graph_name() + ".dot";
+        DOT_Util.output_dot_graph(dot_name);
+      }
     }
 
 

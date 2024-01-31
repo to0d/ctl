@@ -10,6 +10,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <queue>
 #include <algorithm>
 #include <fstream>
 
@@ -26,10 +27,11 @@ enum DotStyle{
 #define is_nolink_node(n)  ((n).depend_indexs.empty() && (n).ref_count == 0)
 
 class DotUtilImpl{
+  friend class DotUtil;
 public:
   DotUtilImpl(Function* F, const std::vector<InstNode>& node_list);
 
-  std::vector<std::string> output_graph();
+  std::vector<std::string> output_graph(const std::vector<InstNode>& output_nodes);
   std::string output_node_line(const InstNode& node);
   std::string output_node_name(const InstNode& node);
   std::string output_node_shape(const InstNode& node);
@@ -38,7 +40,7 @@ public:
   std::string output_node_name_nolinkhead();
   std::string output_edge(const std::string& from_name, const InstNode& to_node, DotStyle style);
 
-
+private:
   std::vector<InstNode> m_node_list;
   std::vector<std::string> m_node_name_list;
   std::string m_graph_name;
@@ -53,7 +55,7 @@ DotUtilImpl::DotUtilImpl(Function* F, const std::vector<InstNode>& node_list){
   m_node_name_list.resize(m_node_size);
 }
 
-std::vector<std::string> DotUtilImpl::output_graph(){
+std::vector<std::string> DotUtilImpl::output_graph(const std::vector<InstNode>& output_nodes){
   std::vector<std::string> lines;
   
   // output digraph begin
@@ -68,7 +70,7 @@ std::vector<std::string> DotUtilImpl::output_graph(){
   std::vector<int> call_indexs;
   
   // output nodes
-  for(const InstNode& node : m_node_list){
+  for(const InstNode& node : output_nodes){
     if(is_nolink_node(node) && node.type != CALL){
       HPC_TRACE2("[Dot]: ignore node: ", hpcc::to_string(node));
       continue;
@@ -79,7 +81,7 @@ std::vector<std::string> DotUtilImpl::output_graph(){
   }
 
   // output edges
-  for(const InstNode& node : m_node_list){
+  for(const InstNode& node : output_nodes){
     auto from_name = output_node_name(node);   
     if(!node.depend_indexs.empty()){
       for(int to_index : node.depend_indexs){
@@ -129,28 +131,22 @@ std::string DotUtilImpl::output_node_label(const InstNode& node){
   switch (node.type)
   {
   case ARG    : return node.var_name +": arg";
-  case RET    : return "ret " + node.var_name;
   case ALLOCA : return node.var_name + ": " + node.inst_name;
   case STORE  : return "store("+get_value_name(node.inst->getOperand(0))
                            +","+get_value_name(node.inst->getOperand(1))+")";
   
   case CALL   :  {
 
-    std::string line = "call ";
+    std::string line = "call " + node.call_name + "(";
 
     CallInst* CI = dyn_cast<CallInst>(node.inst);
-    assert(CI);
+    assert(CI); 
 
-    std::string callFuncName = CI->getCalledFunction()->getName().str();
-    callFuncName = demangle_func_name(callFuncName);
-    line += callFuncName + "(";
-
-    unsigned int num_operands = CI->getNumOperands() - 1;
+    unsigned int num_operands = node.operand_list.size() - 1;
     for(unsigned int r = 0; r < num_operands; r++){
-      Value* opd = CI->getArgOperand(r);
       if(r != 0)
         line += ",";
-      line += get_value_name(opd);
+      line += node.operand_list[r];
     }
     line += ")";
 
@@ -163,8 +159,9 @@ std::string DotUtilImpl::output_node_label(const InstNode& node){
   case LOAD: 
   case CAST:
   case MOP:
+  case RET:
     {
-      std::string line = node.var_name + ": " + node.inst_name + "(";
+      std::string line = node.inst_name + "(";
       int idx = 0;
       for(auto& opd : node.operand_list){
         if(idx++ != 0)
@@ -172,6 +169,10 @@ std::string DotUtilImpl::output_node_label(const InstNode& node){
         line += opd;
       }
       line += ")";
+
+      if(node.var_name != ""){
+        line = node.var_name + ": " + line;
+      }
 
       return line;
     }
@@ -241,9 +242,9 @@ DotUtil::~DotUtil(){
   delete impl;
 }
 
-void DotUtil::output_dot(const std::string& path){
+void DotUtil::output_dot_graph(const std::string& path){
 
-  std::vector<std::string> lines = impl->output_graph();
+  std::vector<std::string> lines = impl->output_graph(impl->m_node_list);
   std::ofstream out_file(path);
   if (!out_file.is_open()) {
     llvm::report_fatal_error("unable to open file");
@@ -254,6 +255,36 @@ void DotUtil::output_dot(const std::string& path){
   }
 
   out_file.close(); 
+}
+
+void DotUtil::output_dot_call_tree(const std::string& path, const std::string& call_name){
+  
+  const std::vector<InstNode>& all_nodes = impl->m_node_list;
+  
+  int node_size = all_nodes.size();
+  std::vector<int> visited_nodes(node_size, 0);
+  std::queue<int> visiting_queue;
+  std::vector<int> found_nodes;
+
+  for(const InstNode& node : all_nodes){
+    if(node.type == CALL && node.call_name == call_name){
+      visiting_queue.push(node.index);
+    }
+  }
+
+  while(!visiting_queue.empty()){
+    int node_index = visiting_queue.front(); 
+    visiting_queue.pop();
+    if(visited_nodes[node_index]++ > 0)
+      continue;
+    found_nodes.push_back(node_index);
+    
+    const InstNode& node = all_nodes[node_index];
+    std::for_each(node.depend_indexs.begin(), node.depend_indexs.end(), [&visiting_queue](auto it){visiting_queue.push(it);});
+  }
+
+  std::sort(found_nodes.begin(), found_nodes.end());
+
 }
 
 std::string DotUtil::get_graph_name(){
