@@ -1,5 +1,0 @@
-Phi Node:   %y = phi i32 [ 1, %btrue ], [ 2, %bfalse ]
-  Incoming Value from Block btrue: i32 1
-  Incoming Value from Block bfalse: i32 2
-ValueSet:  i32 1 i32 2
-output: done!
