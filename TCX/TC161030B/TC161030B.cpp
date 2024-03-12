@@ -1,5 +1,5 @@
 #include <lt_help/lt.h>
-#include <lfc/trace/lfc_dump_mem_hex.h>
+#include "lfc_dump_mem_hex.h"
 #include "new_1.h"
 #include "new_2.h"
 
