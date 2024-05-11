@@ -3,11 +3,12 @@ date = "2023-12-07"
 !outline = "en_1"
 !outline_level = 3
 !top = ""
-mark = "LLVM 17 - Generate dot"
+mark = "LLVM 17 - Generate CFG/Call Graph"
 tags = [
     "CFG",
     "L-dot",
     "llvm-opt",
+    "opt-dot-cfg",
     "opt-dot-callgraph"
 ]
 !template = md2.template
@@ -29,7 +30,4 @@ tags = [
 
 - [](%"2022-10-11 LLVM Opt view cfg 优雅展示程序结构 – Qfrost.html")
 
-### terms
-
-- opt-dot-callgraph (ptag=opt-option) @TAG(Term, CallGraph)
 

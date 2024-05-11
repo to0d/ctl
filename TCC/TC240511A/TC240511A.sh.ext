@@ -1,0 +1,13 @@
++++
+date = "2024-05-11"
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+mark = "Generate CFG Graph"
+tags = [
+    "CFG",
+    "opt-dot-cfg-only"
+]
+!template = md2.template
+!domain = ""
++++

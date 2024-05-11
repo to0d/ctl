@@ -1,0 +1,23 @@
+digraph "CFG for 'foo' function" {
+	label="CFG for 'foo' function";
+
+	Node0x7ffff73ed4a0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#88abfd70",label="{%0}"];
+	Node0x7ffff73ed4a0 -> Node0x7ffff73ed450;
+	Node0x7ffff73ed450 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f3c7b170",label="{%5|{<s0>T|<s1>F}}"];
+	Node0x7ffff73ed450:s0 -> Node0x7ffff73ed3b0;
+	Node0x7ffff73ed450:s1 -> Node0x7ffff73ef850;
+	Node0x7ffff73ed3b0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f3c7b170",label="{%8}"];
+	Node0x7ffff73ed3b0 -> Node0x7ffff73ed4f0;
+	Node0x7ffff73ed4f0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{%9|{<s0>T|<s1>F}}"];
+	Node0x7ffff73ed4f0:s0 -> Node0x7ffff73efaa0;
+	Node0x7ffff73ed4f0:s1 -> Node0x7ffff73efaf0;
+	Node0x7ffff73efaa0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{%12}"];
+	Node0x7ffff73efaa0 -> Node0x7ffff73efdc0;
+	Node0x7ffff73efdc0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{%15}"];
+	Node0x7ffff73efdc0 -> Node0x7ffff73ed4f0;
+	Node0x7ffff73efaf0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f3c7b170",label="{%18}"];
+	Node0x7ffff73efaf0 -> Node0x7ffff73f0cb0;
+	Node0x7ffff73f0cb0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#f3c7b170",label="{%19}"];
+	Node0x7ffff73f0cb0 -> Node0x7ffff73ed450;
+	Node0x7ffff73ef850 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#88abfd70",label="{%22}"];
+}
