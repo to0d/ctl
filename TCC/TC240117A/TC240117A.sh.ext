@@ -5,7 +5,8 @@ date = "2024-01-17"
 !top = ""
 mark = "MPI example 1"
 tags = [
-    "MPI"
+    "MPI",
+    "MPICH"
 ]
 !template = md2.template
 !domain = ""
