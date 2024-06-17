@@ -8,7 +8,7 @@ tags = [
     "PyTorch-Beginner"
 ]
 !template = md2.template
-!domain = ""
+domain = "PyTorch"
 +++
 
 - refer [](%"2023-08-14 深度学习 PyTorch基础入门 知乎.html")
