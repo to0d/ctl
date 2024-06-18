@@ -1,0 +1,13 @@
+; ModuleID = 'example'
+source_filename = "example"
+
+define void @foo() {
+entry:
+  %0 = alloca <vscale x 4 x i32>, align 16
+  %1 = alloca <vscale x 4 x i32>, align 16
+  %2 = alloca <vscale x 4 x i32>, align 16
+  %loadA = load i32, <vscale x 4 x i32>* %0, align 4
+  %loadB = load i32, <vscale x 4 x i32>* %1, align 4
+  %add = add i32 %loadA, %loadB
+  store i32 %add, <vscale x 4 x i32>* %2, align 4
+}

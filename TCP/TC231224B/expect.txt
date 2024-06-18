@@ -1,0 +1,12 @@
+********** hello_old **********
+Cons 0  : hello, val=0
+Var  x  : hello, val=1
+Expr x+1: hello, val=2
+********** hello_new **********
+	call func=func, loc=-1, old-val=i32 0
+	call func=func, loc=-1, old-val=  %5 = load i32, i32* %2, align 4
+	call func=func, loc=-1, old-val=  %8 = add nsw i32 %7, 1
+Cons 0  : hello, val=1
+Var  x  : hello, val=1
+Expr x+1: hello, val=1
+output: done!

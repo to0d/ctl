@@ -2,5 +2,6 @@
 *.so
 *.png
 *.out
+*.o
 output.ll
 result.txt
