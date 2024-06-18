@@ -1,0 +1,13 @@
+digraph "func" {
+	node_0001[shape=record, label="{%1:\l %2 = alloca i32, align 4\l store i32 %0, i32* %2, align 4\l call llvm.dbg.declare\l %3 = load i32, i32* %2, align 4, !dbg !17\l %4 = icmp sgt i32 %3, 1, !dbg !19\l br i1 %4, label %5, label %7, !dbg !20\l|{<s0>T|<s1>F}}"]
+	node_0002[shape=record, label="{%5:\l %6 = call printf\l br label %7, !dbg !23\l}"]
+	node_0003[shape=record, label="{%7:\l call f1\l %8 = load i32, i32* %2, align 4, !dbg !25\l %9 = icmp sgt i32 %8, 1, !dbg !27\l br i1 %9, label %10, label %12, !dbg !28\l|{<s0>T|<s1>F}}"]
+	node_0004[shape=record, label="{%10:\l %11 = call printf\l br label %12, !dbg !31\l}"]
+	node_0005[shape=record, label="{%12:\l call f2\l %13 = load i32, i32* %2, align 4, !dbg !33\l ret i32 %13, !dbg !34\l}"]
+	node_0001:s0 -> node_0002 
+	node_0001:s1 -> node_0003 
+	node_0002 -> node_0003 
+	node_0003:s0 -> node_0004 
+	node_0003:s1 -> node_0005 
+	node_0004 -> node_0005 
+}

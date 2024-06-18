@@ -1,0 +1,8 @@
+Processing loop: Loop at depth 2 containing: %8<header><exiting>,%11,%14<latch>
+3 Blocks, 0  trip
+
+Processing loop: Loop at depth 1 containing: %4<header><exiting>,%7,%8,%17,%18<latch>,%11,%14
+    Loop at depth 2 containing: %8<header><exiting>,%11,%14<latch>
+7 Blocks, 0  trip
+
+output: done!

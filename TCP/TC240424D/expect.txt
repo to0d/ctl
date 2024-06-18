@@ -1,0 +1,6 @@
+Post dominators of Basic Block %1 are: 
+Post dominators of Basic Block %5 are: 
+Post dominators of Basic Block %7 are:   
+Post dominators of Basic Block %10 are: 
+Post dominators of Basic Block %12 are:   
+output: done!

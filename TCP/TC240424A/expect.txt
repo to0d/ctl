@@ -1,0 +1,9 @@
+Function func
+  @func
+    args uses:
+    allocas uses:
+      [4]: [0,4)
+      [400]: [-8589934592,8589934592)
+      [4]: [0,4)
+
+output: done!

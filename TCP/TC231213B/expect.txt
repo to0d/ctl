@@ -1,0 +1,7 @@
+Instruction <  store i32 %0, i32* %2, align 4> depends on <  store i32 0, i32* %2, align 4, !dbg !17>
+Instruction <  store i32 %0, i32* %2, align 4> depends on <  %3 = load i32, i32* %2, align 4, !dbg !18>
+Instruction <  store i32 0, i32* %2, align 4, !dbg !17> depends on <  store i32 %0, i32* %2, align 4>
+Instruction <  store i32 0, i32* %2, align 4, !dbg !17> depends on <  %3 = load i32, i32* %2, align 4, !dbg !18>
+Instruction <  %3 = load i32, i32* %2, align 4, !dbg !18> depends on <  store i32 %0, i32* %2, align 4>
+Instruction <  %3 = load i32, i32* %2, align 4, !dbg !18> depends on <  store i32 0, i32* %2, align 4, !dbg !17>
+output: done!

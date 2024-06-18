@@ -1,0 +1,8 @@
+Dominance Frontier for Basic Block: %1
+Dominance Frontier for Basic Block: %5
+  -> %7
+Dominance Frontier for Basic Block: %7
+Dominance Frontier for Basic Block: %10
+  -> %12
+Dominance Frontier for Basic Block: %12
+output: done!

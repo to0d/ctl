@@ -1,0 +1,6 @@
+*.bc
+*.so
+*.png
+*.out
+output.ll
+result.txt

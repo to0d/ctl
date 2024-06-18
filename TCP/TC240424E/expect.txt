@@ -1,0 +1,6 @@
+Dominators of Basic Block %1 are:   
+Dominators of Basic Block %5 are: 
+Dominators of Basic Block %7 are:   
+Dominators of Basic Block %10 are: 
+Dominators of Basic Block %12 are: 
+output: done!

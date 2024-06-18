@@ -56,32 +56,33 @@ do
     esac
 done
 
-if [ $lt_count == 0 ]; then
+if [ $lt_count = 0 ]; then
     echo "tcpp error: not action specified"
     exit 1
 fi
 
-if [ $lt_action_list == 1 ]; then
+if [ $lt_action_list = 1 ]; then
     
     test_dir_list=$(find $workspace -type d| grep -v -e "\.$")
    
     for pt_dir in $test_dir_list
-    {
+    do
         # query test
         test_sh_list=$(ls $pt_dir | grep -e "^TC.*\.${lt_type}$")
         for pt_name in $test_sh_list
-        {   pt_sh=$pt_dir/$pt_name    
+        do   
+            pt_sh=$pt_dir/$pt_name    
             echo $pt_dir/$pt_name 
-        }
-    }
+        done
+    done
 
 fi
 
-if [ $lt_action_make == 1 ]; then
+if [ $lt_action_make = 1 ]; then
 
     test_dir_list=$(find $workspace -type d| grep -v -e "\.$")
     for pt_dir in $test_dir_list
-    {    
+    do   
         # query test
         test_sh_list=$(ls $pt_dir | grep -e "^TC.*\.${lt_type}$")
         if [ ! "$test_sh_list" = "" ]
@@ -90,11 +91,11 @@ if [ $lt_action_make == 1 ]; then
             pwd
             make
         fi
-    }
+    done
 
 fi
 
-if [ $lt_action_run == 1 ]; then
+if [ $lt_action_run = 1 ]; then
 
     out_file=$workspace/tcc.out
 
@@ -105,7 +106,7 @@ if [ $lt_action_run == 1 ]; then
 
     test_dir_list=$(find . -type d | grep -v -e "\.$")
     for pt_dir in $test_dir_list
-    {   
+    do  
         cd $workspace
          
         # query test
@@ -125,15 +126,13 @@ if [ $lt_action_run == 1 ]; then
                 echo "error, result not found!" | tee -a $out_file 
             fi
         fi
-    }
-
+    done
 fi
 
-if [ $lt_action_clean == 1 ]; then
-        
+if [ $lt_action_clean = 1 ]; then
     test_dir_list=$(find $workspace -type d| grep -v -e "\.$")
     for pt_dir in $test_dir_list
-    {    
+    do   
         # query test
         test_sh_list=$(ls $pt_dir | grep -e "^TC.*\.${lt_type}$")
         if [ ! "$test_sh_list" = "" ]
@@ -142,6 +141,5 @@ if [ $lt_action_clean == 1 ]; then
             pwd
             make clean
         fi
-    }
-
+    done
 fi

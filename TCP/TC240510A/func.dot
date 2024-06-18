@@ -1,0 +1,17 @@
+digraph "func" {
+	node_0001[shape=record, label="{%1:\l %2 = alloca i32, align 4\l %3 = alloca i32, align 4\l store i32 %0, i32* %2, align 4\l %4 = load i32, i32* %2, align 4\l %5 = icmp sgt i32 %4, 1\l br i1 %5, label %6, label %9\l|{<s0>T|<s1>F}}"]
+	node_0002[shape=record, label="{%6:\l %7 = load i32, i32* %2, align 4\l %8 = add nsw i32 %7, 1\l store i32 %8, i32* %2, align 4\l br label %9\l}"]
+	node_0003[shape=record, label="{%9:\l store i32 0, i32* %3, align 4\l br label %10\l}"]
+	node_0004[shape=record, label="{%10:\l %11 = load i32, i32* %3, align 4\l %12 = icmp slt i32 %11, 3\l br i1 %12, label %13, label %19\l|{<s0>T|<s1>F}}"]
+	node_0005[shape=record, label="{%13:\l %14 = load i32, i32* %2, align 4\l %15 = add nsw i32 %14, 1\l store i32 %15, i32* %2, align 4\l br label %16\l}"]
+	node_0006[shape=record, label="{%16:\l %17 = load i32, i32* %3, align 4\l %18 = add nsw i32 %17, 1\l store i32 %18, i32* %3, align 4\l br label %10, !llvm.loop !6\l}"]
+	node_0007[shape=record, label="{%19:\l %20 = load i32, i32* %2, align 4\l ret i32 %20\l}"]
+	node_0001:s0 -> node_0002 
+	node_0001:s1 -> node_0003 
+	node_0002 -> node_0003 
+	node_0003 -> node_0004 
+	node_0004:s0 -> node_0005 
+	node_0004:s1 -> node_0007 
+	node_0005 -> node_0006 
+	node_0006 -> node_0004 
+}

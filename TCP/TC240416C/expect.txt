@@ -1,0 +1,16 @@
+Pass Arguments:  -targetlibinfo -tti -targetpassconfig -domtree -mypass -verify -write-bitcode
+Target Library Information
+Target Transform Information
+Target Pass Configuration
+  ModulePass Manager
+    FunctionPass Manager
+      Dominator Tree Construction
+      My Pass
+      Module Verifier
+    Bitcode Writer
+%1:
+  %5: printf
+  %7: f1
+    %10: printf
+    %12: f2
+output: done!
