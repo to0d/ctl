@@ -1,0 +1,19 @@
++++
+date = "2024-06-26"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+!mark = ""
+tags = [
+    "TorchDynamo",
+    "计算图"
+]
+!template = md2.template
+!domain = ""
+!id = ""
+!link = ""
+!index_word_group=false
++++
+
+- refer [](%"2023-05-22 一文搞懂 TorchDynamo 原理 - 知乎.htm")
