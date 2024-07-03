@@ -1,0 +1,20 @@
++++
+date = "2024-07-03"
+!rename = ""
+!outline = "en_1"
+!outline_level = 3
+!top = ""
+!mark = ""
+tags = [
+    "opt-aa-eval"
+]
+!template = md2.template
+!domain = ""
+!id = ""
+!link = ""
+!index_word_group=false
++++
+
+## NOTE: remove **optnone** attribute before run aa-eval @TAG(opt-aa-eval, LLVM-Attribute-optnone)
+
+- How to generate a function without **optnone** except specify `-O` option - 2024/07/03 @TODO @TAG(LLVM-Attribute-optnone)

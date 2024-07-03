@@ -1,0 +1,21 @@
+digraph "Dominator tree for 'foo' function" {
+	label="Dominator tree for 'foo' function";
+
+	Node0x6d4f60 [shape=record,label="{%0:\l  %1 = alloca i32, align 4\l  %2 = alloca i32, align 4\l  %3 = alloca i32, align 4\l  %4 = alloca i32, align 4\l  store i32 0, i32* %4, align 4\l  store i32 0, i32* %1, align 4\l  br label %5\l}"];
+	Node0x6d4f60 -> Node0x6e2de0;
+	Node0x6e2de0 [shape=record,label="{%5:\l5:                                                \l  %6 = load i32, i32* %1, align 4\l  %7 = icmp slt i32 %6, 2\l  br i1 %7, label %8, label %22\l}"];
+	Node0x6e2de0 -> Node0x6d5430;
+	Node0x6e2de0 -> Node0x6e2220;
+	Node0x6d5430 [shape=record,label="{%8:\l8:                                                \l  store i32 0, i32* %2, align 4\l  br label %9\l}"];
+	Node0x6d5430 -> Node0x6e2e40;
+	Node0x6e2e40 [shape=record,label="{%9:\l9:                                                \l  %10 = load i32, i32* %2, align 4\l  %11 = icmp slt i32 %10, 3\l  br i1 %11, label %12, label %18\l}"];
+	Node0x6e2e40 -> Node0x6e2ea0;
+	Node0x6e2e40 -> Node0x6d8d30;
+	Node0x6e2ea0 [shape=record,label="{%12:\l12:                                               \l  %13 = load i32, i32* %4, align 4\l  %14 = add nsw i32 %13, 1\l  store i32 %14, i32* %4, align 4\l  br label %15\l}"];
+	Node0x6e2ea0 -> Node0x6d92a0;
+	Node0x6d92a0 [shape=record,label="{%15:\l15:                                               \l  %16 = load i32, i32* %2, align 4\l  %17 = add nsw i32 %16, 1\l  store i32 %17, i32* %2, align 4\l  br label %9, !llvm.loop !6\l}"];
+	Node0x6d8d30 [shape=record,label="{%18:\l18:                                               \l  call void (...) @f1()\l  br label %19\l}"];
+	Node0x6d8d30 -> Node0x6e21c0;
+	Node0x6e21c0 [shape=record,label="{%19:\l19:                                               \l  %20 = load i32, i32* %1, align 4\l  %21 = add nsw i32 %20, 1\l  store i32 %21, i32* %1, align 4\l  br label %5, !llvm.loop !8\l}"];
+	Node0x6e2220 [shape=record,label="{%22:\l22:                                               \l  call void (...) @f2()\l  %23 = load i32, i32* %4, align 4\l  ret i32 %23\l}"];
+}
