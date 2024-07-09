@@ -1,0 +1,19 @@
+digraph "CFG for '_Z9is_sortedPii' function" {
+	label="CFG for '_Z9is_sortedPii' function";
+
+	Node0x9cdbd0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dbdcde70",label="{%2}"];
+	Node0x9cdbd0 -> Node0x9ce4e0;
+	Node0x9ce4e0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{%7|{<s0>T|<s1>F}}"];
+	Node0x9ce4e0:s0 -> Node0x9ce3b0;
+	Node0x9ce4e0:s1 -> Node0x9ce680;
+	Node0x9ce3b0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{%12|{<s0>T|<s1>F}}"];
+	Node0x9ce3b0:s0 -> Node0x9ced10;
+	Node0x9ce3b0:s1 -> Node0x9ced60;
+	Node0x9ced10 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#b9d0f970",label="{%25}"];
+	Node0x9ced10 -> Node0x9cef60;
+	Node0x9ced60 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{%26}"];
+	Node0x9ced60 -> Node0x9ce4e0;
+	Node0x9ce680 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#b9d0f970",label="{%29}"];
+	Node0x9ce680 -> Node0x9cef60;
+	Node0x9cef60 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dbdcde70",label="{%30}"];
+}

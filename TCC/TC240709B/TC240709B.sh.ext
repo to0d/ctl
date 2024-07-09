@@ -1,13 +1,12 @@
 +++
-date = "2024-07-08"
+date = "2024-07-09"
 !rename = ""
 !outline = "en_1"
 !outline_level = 3
 !top = ""
 !mark = ""
 tags = [
-    "opt-mem2reg",
-    "opt-reg2mem"
+    "opt-sccp"
 ]
 !template = md2.template
 !domain = ""
